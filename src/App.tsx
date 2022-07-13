@@ -1,28 +1,45 @@
-import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Layout } from "./shared/components";
+import { CarSelect, Configuration, Configurator, Home, SignIn } from "./views";
 
 function App() {
   const [isLoggedIn, setIsLogggedIn] = useState<boolean>(false);
+  const navigate = useNavigate();
   function onLogin() {
     setIsLogggedIn(!isLoggedIn);
+    navigate("/sign-in", { replace: true });
   }
+  useEffect(() => {
+    isLoggedIn
+      ? navigate("/", { replace: true })
+      : navigate("/sign-in", { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <Layout onLogin={() => onLogin()}>
+    <Layout isLoggedIn={isLoggedIn} onLogin={() => onLogin()}>
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <div>Home</div>
+              <Home />
             </>
           }
         ></Route>
         <Route
+          path="/sign-in"
+          element={
+            <>
+              <SignIn />
+            </>
+          }
+        />
+        <Route
           path="/car-select"
           element={
             <>
-              <div>Car select</div>
+              <CarSelect />
             </>
           }
         />
@@ -30,7 +47,7 @@ function App() {
           path="/configuration"
           element={
             <>
-              <div>configuration view</div>
+              <Configuration />
             </>
           }
         />
@@ -39,7 +56,7 @@ function App() {
             index
             element={
               <>
-                <div>Configurator - Exterior</div>
+                <Configurator configuratorPart="Exterior" />
               </>
             }
           />
@@ -47,7 +64,7 @@ function App() {
             path="interior"
             element={
               <>
-                <div>Configurator - Interior</div>
+                <Configurator configuratorPart="Interior" />
               </>
             }
           />

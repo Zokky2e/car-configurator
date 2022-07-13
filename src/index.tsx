@@ -16,6 +16,9 @@ root.render(
           --nav-text: #f1f1f4;
           --nav-button-border: #505062;
           --background: #f1f1f4;
+          --basic-white: #ffffff;
+          --primary-1: #3f3fe4;
+          --modal-shadow: rgba(0, 0, 0, 0.06);
         }
         body {
           margin: 0;
