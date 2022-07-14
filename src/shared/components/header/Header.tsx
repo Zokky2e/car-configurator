@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { sharedAtoms } from "../../states";
 import {
   container,
   hamburger,
@@ -14,12 +16,9 @@ interface Props {
 }
 
 export function Header(props: Props) {
-  const [emptyState, setEmptyState] = useState<boolean>(true);
+  const emptyState = useRecoilValue(sharedAtoms.configureButton);
   const [isMainMenu, setIsMainMenu] = useState<boolean>(false);
   const navigate = useNavigate();
-  useEffect(() => {
-    setEmptyState(true);
-  }, [emptyState]);
   return (
     <>
       <header css={container}>

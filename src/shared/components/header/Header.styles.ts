@@ -42,14 +42,16 @@ export const configureButton = css`
 `;
 
 export const mainMenu = css`
-  position: relative;
+  position: absolute;
+  z-index: 5;
   padding: 0;
   margin: 0;
-  float: right;
+  max-width: 212px;
+  right: 0px;
   list-style-type: none;
   display: flex;
   flex-flow: nowrap column;
-  justify-content: flex-start;
+  justify-content: flex-end;
   button {
     cursor: pointer;
     box-shadow: 0px 10px 40px var(--modal-shadow);

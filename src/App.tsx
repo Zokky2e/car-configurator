@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Layout } from "./shared/components";
+import { RecoilRoot } from "recoil";
+import { Layout } from "./shared";
 import { CarSelect, Configuration, Configurator, Home, SignIn } from "./views";
 
 function App() {
@@ -17,60 +18,62 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <Layout isLoggedIn={isLoggedIn} onLogin={() => onLogin()}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Home />
-            </>
-          }
-        ></Route>
-        <Route
-          path="/sign-in"
-          element={
-            <>
-              <SignIn />
-            </>
-          }
-        />
-        <Route
-          path="/car-select"
-          element={
-            <>
-              <CarSelect />
-            </>
-          }
-        />
-        <Route
-          path="/configuration"
-          element={
-            <>
-              <Configuration />
-            </>
-          }
-        />
-        <Route path="/configurator">
+    <RecoilRoot>
+      <Layout isLoggedIn={isLoggedIn} onLogin={() => onLogin()}>
+        <Routes>
           <Route
-            index
+            path="/"
             element={
               <>
-                <Configurator configuratorPart="Exterior" />
+                <Home />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/sign-in"
+            element={
+              <>
+                <SignIn />
               </>
             }
           />
           <Route
-            path="interior"
+            path="/car-select"
             element={
               <>
-                <Configurator configuratorPart="Interior" />
+                <CarSelect />
               </>
             }
           />
-        </Route>
-      </Routes>
-    </Layout>
+          <Route
+            path="/configuration"
+            element={
+              <>
+                <Configuration />
+              </>
+            }
+          />
+          <Route path="/configurator">
+            <Route
+              index
+              element={
+                <>
+                  <Configurator configuratorPart="Exterior" />
+                </>
+              }
+            />
+            <Route
+              path="interior"
+              element={
+                <>
+                  <Configurator configuratorPart="Interior" />
+                </>
+              }
+            />
+          </Route>
+        </Routes>
+      </Layout>
+    </RecoilRoot>
   );
 }
 
