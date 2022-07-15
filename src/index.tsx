@@ -23,6 +23,7 @@ root.render(
           --primary: #1e1ed2;
           --text-1: #2e2e38;
           --text-3: #73738c;
+          --text-5: #c7c7d1;
           --modal-shadow: rgba(0, 0, 0, 0.06);
         }
         body {

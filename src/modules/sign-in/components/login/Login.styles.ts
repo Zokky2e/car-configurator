@@ -28,6 +28,7 @@ export const formElement = css`
   font-size: 16px;
   line-height: 24px;
   input {
+    padding-bottom: 4px;
     max-width: 328px;
     border: none;
     background-color: transparent;
@@ -40,9 +41,11 @@ export const formElement = css`
     margin-bottom: 16px;
   }
 `;
-export const button = css`
-  margin: 0 auto;
-  input {
+export const buttons = css`
+  display: flex;
+  margin: 0 auto 16px;
+  gap: 4px;
+  button {
     height: 44px;
     padding: 12px 20px;
     display: flex;
@@ -62,13 +65,29 @@ export const notClickable = css`
   opacity: 0.5;
   color: var(--icon-6);
 `;
-
+export const eye = css`
+  position: relative;
+  top: -28px;
+  left: 156px;
+  display: flex;
+  justify-content: flex-end;
+  width: 16px;
+  cursor: pointer;
+`;
+export const recovery = css`
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--primary);
+`;
 export const styles = {
   container,
   title,
   form,
   formElement,
-  button,
+  buttons,
   clickable,
   notClickable,
+  eye,
+  recovery,
 };
