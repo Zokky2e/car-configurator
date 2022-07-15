@@ -5,5 +5,10 @@ const configureButton = atom<boolean>({
   default: false,
   dangerouslyAllowMutability: true,
 });
+const isLoggedIn = atom<boolean>({
+  key: "auth.loggedIn",
+  default: false,
+  dangerouslyAllowMutability: true,
+});
 
-export const sharedAtoms = { configureButton };
+export const sharedAtoms = { configureButton, isLoggedIn };

@@ -16,6 +16,7 @@ root.render(
           --nav-text: #f1f1f4;
           --nav-button-border: #505062;
           --background: #f1f1f4;
+          --border-5: #c7c7d1;
           --icon-6: #f1f1f4;
           --basic-white: #ffffff;
           --primary-1: #3f3fe4;

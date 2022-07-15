@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useResetRecoilState, useRecoilValue } from "recoil";
 import { sharedAtoms } from "../../states";
 import {
   container,
@@ -10,14 +10,12 @@ import {
   configureButton,
   mainMenu,
 } from "./Header.styles";
-interface Props {
-  isLoggedIn: boolean;
-  onLogin: () => void;
-}
 
-export function Header(props: Props) {
+export function Header() {
   const emptyState = useRecoilValue(sharedAtoms.configureButton);
   const [isMainMenu, setIsMainMenu] = useState<boolean>(false);
+  const isLoggedIn = useRecoilValue(sharedAtoms.isLoggedIn);
+  const resetIsLoggedIn = useResetRecoilState(sharedAtoms.isLoggedIn);
   const navigate = useNavigate();
   return (
     <>
@@ -30,7 +28,7 @@ export function Header(props: Props) {
             {emptyState ? (
               <button
                 onClick={() => {
-                  props.isLoggedIn && navigate("/car-select");
+                  isLoggedIn && navigate("/car-select");
                 }}
                 css={configureButton}
               >
@@ -40,15 +38,18 @@ export function Header(props: Props) {
               <></>
             )}
           </>
-
-          <button
-            css={hamburger}
-            onClick={() => {
-              setIsMainMenu(!isMainMenu);
-            }}
-          >
-            <img src={require("../../assets/hamburger.png")} alt="logo" />
-          </button>
+          {isLoggedIn ? (
+            <button
+              css={hamburger}
+              onClick={() => {
+                setIsMainMenu(!isMainMenu);
+              }}
+            >
+              <img src={require("../../assets/hamburger.png")} alt="logo" />
+            </button>
+          ) : (
+            ""
+          )}
         </ul>
       </header>
       {isMainMenu ? (
@@ -56,20 +57,24 @@ export function Header(props: Props) {
           <button
             onClick={() => {
               setIsMainMenu(!isMainMenu);
-              props.isLoggedIn && navigate("/", { replace: true });
+              isLoggedIn && navigate("/", { replace: true });
             }}
           >
             My saved configurations
           </button>
-          <button
-            onClick={() => {
-              setIsMainMenu(!isMainMenu);
-              props.onLogin();
-              !props.isLoggedIn && navigate("/", { replace: true });
-            }}
-          >
-            {props.isLoggedIn ? "Logout" : "Login"}
-          </button>
+          {isLoggedIn ? (
+            <button
+              onClick={() => {
+                setIsMainMenu(!isMainMenu);
+                resetIsLoggedIn();
+                !isLoggedIn && navigate("/", { replace: true });
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            ""
+          )}
         </ul>
       ) : (
         <></>
