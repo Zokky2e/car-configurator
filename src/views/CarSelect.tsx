@@ -1,3 +1,9 @@
+import { CarPicker } from "../modules";
+
 export function CarSelect() {
-  return <div>Car select</div>;
+  return (
+    <>
+      <CarPicker />
+    </>
+  );
 }
