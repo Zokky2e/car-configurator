@@ -2,8 +2,12 @@ import { css } from "@emotion/react";
 export const item = css`
   display: flex;
   background-color: var(--background-7);
-  padding: 30px 0;
+  padding: 20px 0 24px;
   margin: 28px 0;
+  @media screen and (max-width: 940px) {
+    flex-flow: wrap column;
+    height: 525px;
+  }
 `;
 
 export const info = css`
@@ -11,7 +15,7 @@ export const info = css`
   flex: 1 0;
   justify-content: flex-start;
   align-items: center;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 940px) {
     flex-flow: wrap row;
   }
   article {
@@ -22,8 +26,10 @@ export const picture = css`
   padding: 0 40px;
   width: 420px;
   border-right: 1px solid #dbdbdb;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 940px) {
     border-right: none;
+    width: 100%;
+    padding: 0;
   }
 `;
 export const year = css`
@@ -64,7 +70,15 @@ export const uppercase = css`
   text-transform: uppercase;
 `;
 
-export const options = css``;
+export const options = css`
+  display: flex;
+  flex-flow: wrap column;
+  @media screen and (max-width: 940px) {
+    flex-direction: row-reverse;
+  }
+  justify-content: flex-end;
+  float: right;
+`;
 
 export const optionsButton = css`
   align-self: flex-end;
@@ -73,8 +87,9 @@ export const optionsButton = css`
   height: 32px;
   text-align: center;
   margin-right: 16px;
-  @media screen and (max-width: 768px) {
-    align-self: center;
+  @media screen and (max-width: 940px) {
+    align-self: flex-start;
+    margin: 0 auto;
   }
   background-color: transparent;
   border: none;
@@ -86,12 +101,17 @@ export const optionsMenu = css`
   z-index: 5;
   padding: 0;
   margin: 0;
-  left: 28px;
-  top: 36px;
+  left: -20px;
+  top: 4px;
   list-style-type: none;
   display: flex;
   flex-flow: nowrap column;
   justify-content: flex-end;
+  @media screen and (max-width: 940px) {
+    flex-flow: nowrap row;
+    left: 0px;
+    top: 0px;
+  }
   button {
     text-align: left;
     width: 212px;
@@ -102,13 +122,29 @@ export const optionsMenu = css`
     background-color: transparent;
     border: none;
     color: var(--primary);
+    @media screen and (max-width: 940px) {
+      width: 142px;
+      padding: 16px 6px;
+    }
     :last-of-type {
       color: var(--error);
       border-top: 1px solid var(--background);
+      @media screen and (max-width: 940px) {
+        border-top: none;
+        border-left: 1px solid var(--background);
+      }
     }
   }
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.06);
 `;
+
+export const hidden = css`
+  visibility: hidden;
+`;
+export const visible = css`
+  visibility: visible;
+`;
+
 export const styles = {
   item,
   info,
@@ -121,4 +157,6 @@ export const styles = {
   options,
   optionsButton,
   optionsMenu,
+  hidden,
+  visible,
 };

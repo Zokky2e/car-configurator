@@ -25,14 +25,15 @@ export function Car(props: CarInfo) {
         >
           dots
         </button>
-        {isOptionsMenu ? (
-          <ul css={styles.optionsMenu}>
-            <button>Edit configuration</button>
-            <button>Delete </button>
-          </ul>
-        ) : (
-          <></>
-        )}
+        <ul
+          css={[
+            styles.optionsMenu,
+            isOptionsMenu ? styles.visible : styles.hidden,
+          ]}
+        >
+          <button>Edit configuration</button>
+          <button>Delete</button>
+        </ul>
       </div>
     </li>
   );

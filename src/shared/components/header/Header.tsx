@@ -9,6 +9,8 @@ import {
   navigation,
   configureButton,
   mainMenu,
+  visible,
+  hidden,
 } from "./Header.styles";
 
 export function Header() {
@@ -50,35 +52,31 @@ export function Header() {
           ) : (
             ""
           )}
-        </ul>
-      </header>
-      {isMainMenu ? (
-        <ul css={mainMenu}>
-          <button
-            onClick={() => {
-              setIsMainMenu(!isMainMenu);
-              isLoggedIn && navigate("/", { replace: true });
-            }}
-          >
-            My saved configurations
-          </button>
-          {isLoggedIn ? (
+          <ul css={[mainMenu, isMainMenu ? visible : hidden]}>
             <button
               onClick={() => {
                 setIsMainMenu(!isMainMenu);
-                resetIsLoggedIn();
-                !isLoggedIn && navigate("/", { replace: true });
+                isLoggedIn && navigate("/", { replace: true });
               }}
             >
-              Logout
+              My saved configurations
             </button>
-          ) : (
-            ""
-          )}
+            {isLoggedIn ? (
+              <button
+                onClick={() => {
+                  setIsMainMenu(!isMainMenu);
+                  resetIsLoggedIn();
+                  !isLoggedIn && navigate("/", { replace: true });
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              ""
+            )}
+          </ul>
         </ul>
-      ) : (
-        <></>
-      )}
+      </header>
     </>
   );
 }

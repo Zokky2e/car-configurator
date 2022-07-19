@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const container = css`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,11 +48,12 @@ export const mainMenu = css`
   padding: 0;
   margin: 0;
   max-width: 212px;
-  right: 0px;
+  margin-left: auto;
   list-style-type: none;
   display: flex;
   flex-flow: nowrap column;
-  justify-content: flex-end;
+  top: 80px;
+  right: 0px;
   button {
     cursor: pointer;
     box-shadow: 0px 10px 40px var(--modal-shadow);
@@ -65,4 +67,10 @@ export const mainMenu = css`
   button:first-of-type {
     border-bottom: 1px solid var(--background);
   }
+`;
+export const hidden = css`
+  visibility: hidden;
+`;
+export const visible = css`
+  visibility: visible;
 `;
