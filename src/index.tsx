@@ -11,6 +11,8 @@ root.render(
   <BrowserRouter>
     <Global
       styles={css`
+        @import url("https://rsms.me/inter/inter.css");
+        @import url("http://fonts.cdnfonts.com/css/optician-sans");
         :root {
           --nav-bg: #2e2e38;
           --nav-text: #f1f1f4;

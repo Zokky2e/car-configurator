@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { sharedAtoms } from "../../../../shared";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../../../shared";
 import { styles } from "./Login.styles";
 export function Login() {
   const [email, setEmail] = useState<string>("");
@@ -10,17 +8,15 @@ export function Login() {
   const [isClickable, setIsClickable] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
-  const setIsLoggedIn = useSetRecoilState(sharedAtoms.isLoggedIn);
-  const navigate = useNavigate();
+  const userAuth = useAuth();
   useEffect(() => {
     if (email === "" || password === "") return setIsClickable(false);
     setIsClickable(true);
   }, [email, password]);
-  function handleSubmit() {
-    //TODO auth with useAuth()
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     if (email === "" || password === "") return;
-    setIsLoggedIn(true);
-    navigate("/", { replace: true });
+    userAuth.handleLogin(e, email, password);
   }
   function handlePasswordRecovery() {
     return;

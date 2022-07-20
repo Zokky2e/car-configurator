@@ -1,3 +1,4 @@
+import { UserCredential } from "firebase/auth";
 import { atom } from "recoil";
 
 const configureButton = atom<boolean>({
@@ -6,9 +7,13 @@ const configureButton = atom<boolean>({
   dangerouslyAllowMutability: true,
 });
 const isLoggedIn = atom<boolean>({
-  key: "auth.loggedIn",
+  key: "userAuth.loggedIn",
   default: false,
   dangerouslyAllowMutability: true,
 });
-
-export const sharedAtoms = { configureButton, isLoggedIn };
+const user = atom<UserCredential>({
+  key: "userAuth.userCreditential",
+  default: undefined,
+  dangerouslyAllowMutability: true,
+});
+export const sharedAtoms = { configureButton, isLoggedIn, user };

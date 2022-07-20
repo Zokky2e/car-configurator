@@ -29,21 +29,22 @@ export const image = css`
   top: -28px;
 `;
 export const year = css`
-  font-family: Sans;
+  font-family: "Optician Sans";
   font-style: normal;
-  font-size: 28px;
+
   font-weight: 400;
+  font-size: 28px;
   line-height: 32px;
   letter-spacing: -2px;
   color: var(--text-3);
-  margin: 40px 0 8px !important;
+  margin: 40px 0 0;
 `;
 export const name = css`
-  font-family: Sans;
+  font-family: "Optician Sans";
   font-style: normal;
-  font-size: 44px;
+  font-size: 48px;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 44px;
   letter-spacing: -2px;
   color: var(--text-1);
   margin-bottom: 16px !important;

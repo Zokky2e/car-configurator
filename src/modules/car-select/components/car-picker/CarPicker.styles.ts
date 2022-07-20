@@ -21,9 +21,8 @@ export const carList = css`
 `;
 export const title = css`
   font-weight: 400;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 32px;
-  margin: 0;
   color: var(--text-1);
 `;
 export const description = css`

@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { sharedAtoms } from "../../../../shared";
+import { useAuth } from "../../../../shared";
 import { styles } from "./Register.styles";
 export function Register() {
   const [email, setEmail] = useState<string>("");
@@ -12,9 +11,9 @@ export function Register() {
   const [showConfirmedPassword, setShowConfirmedPassword] =
     useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
+  const userAuth = useAuth();
 
   const [isClickable, setIsClickable] = useState<boolean>(true);
-  const setIsLoggedIn = useSetRecoilState(sharedAtoms.isLoggedIn);
   const navigate = useNavigate();
   useEffect(() => {
     if (email === "" || password === "" || confirmPassword === "")
@@ -22,10 +21,10 @@ export function Register() {
     setIsClickable(true);
   }, [email, password, confirmPassword]);
 
-  function handleSubmit() {
-    //TODO auth with useAuth()
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     if (email === "" || password === "" || confirmPassword === "") return;
-    setIsLoggedIn(true);
+    userAuth.handleRegister(e, email, password);
     navigate("/", { replace: true });
   }
   return (

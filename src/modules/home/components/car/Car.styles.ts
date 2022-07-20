@@ -33,15 +33,16 @@ export const picture = css`
   }
 `;
 export const year = css`
-  font-family: Sans;
+  font-family: "Inter";
   font-style: normal;
   margin: 0;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
+  letter-spacing: 2px;
 `;
 export const title = css`
-  font-family: Sans;
+  font-family: "Optician Sans";
   font-style: normal;
   margin: 0;
   font-weight: 400;

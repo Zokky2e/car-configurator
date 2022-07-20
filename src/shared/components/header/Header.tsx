@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useResetRecoilState, useRecoilValue } from "recoil";
+import { useAuth } from "../../hooks";
 import { sharedAtoms } from "../../states";
 import {
   container,
@@ -18,7 +19,10 @@ export function Header() {
   const [isMainMenu, setIsMainMenu] = useState<boolean>(false);
   const isLoggedIn = useRecoilValue(sharedAtoms.isLoggedIn);
   const resetIsLoggedIn = useResetRecoilState(sharedAtoms.isLoggedIn);
+  const resetUser = useResetRecoilState(sharedAtoms.user);
   const navigate = useNavigate();
+  const user = useAuth();
+  useEffect(() => {});
   return (
     <>
       <header css={container}>
@@ -66,7 +70,8 @@ export function Header() {
                 onClick={() => {
                   setIsMainMenu(!isMainMenu);
                   resetIsLoggedIn();
-                  !isLoggedIn && navigate("/", { replace: true });
+                  resetUser();
+                  user.handleLogout();
                 }}
               >
                 Logout
