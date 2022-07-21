@@ -1,1 +1,1 @@
-export * from "./CarInfo";
+export * from "./CarCardInfo";

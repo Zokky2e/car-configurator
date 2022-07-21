@@ -43,6 +43,7 @@ export const formElement = css`
 `;
 export const buttons = css`
   display: flex;
+  flex-direction: row-reverse;
   margin: 0 auto 16px;
   gap: 4px;
   button {

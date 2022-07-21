@@ -6,40 +6,38 @@ import {
 } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { auth } from "../../firebase";
 import { sharedAtoms } from "../states";
 
 export function useAuth() {
-  const setUser = useSetRecoilState(sharedAtoms.user);
+  const [user, setUser] = useRecoilState(sharedAtoms.user);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(sharedAtoms.isLoggedIn);
   const navigate = useNavigate();
   const resetUser = useResetRecoilState(sharedAtoms.user);
-
   useEffect(() => {
     !isLoggedIn && resetUser();
-    setAuthListeners();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  function setAuthListeners() {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.email);
-        navigate("/", { replace: true });
+        setUser(user);
+        setIsLoggedIn(true);
+        navigate("/");
       } else {
-        console.log("logged out");
         resetUser();
+        setIsLoggedIn(false);
         navigate("/sign-in", { replace: true });
       }
     });
-  }
+    return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
   function handleRegister(e: React.FormEvent, email: string, password: string) {
     e.preventDefault();
     if (!email || !password) return;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log("register completed");
-        setUser(userCredential);
+        setUser(userCredential.user);
         setIsLoggedIn(true);
       })
       .catch((error) => {
@@ -54,8 +52,8 @@ export function useAuth() {
     if (!email || !password) return;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("login completed");
-        setUser(userCredential);
+        console.log(userCredential.user);
+        setUser(userCredential.user);
         setIsLoggedIn(true);
       })
       .catch((error) => {
@@ -67,8 +65,10 @@ export function useAuth() {
   }
   function handleLogout() {
     signOut(auth);
+    resetUser();
   }
   return {
+    user: user,
     handleLogin: handleLogin,
     handleRegister: handleRegister,
     handleLogout: handleLogout,

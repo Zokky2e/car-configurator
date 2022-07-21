@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { useNavigate } from "react-router-dom";
 import { styles } from "./Header.styles";
-
 export function Header() {
   const navigate = useNavigate();
+
   return (
     <section>
       <header css={styles.container}>

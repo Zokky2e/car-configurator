@@ -71,13 +71,13 @@ export function Login() {
           </span>
         </label>
         <div css={styles.buttons}>
-          <button css={styles.clickable}>Google</button>
           <button
             css={isClickable ? styles.clickable : styles.notClickable}
             onClick={handleSubmit}
           >
             Login
           </button>
+          <button css={styles.clickable}>Google</button>
         </div>
       </form>
       <article css={styles.recovery} onClick={handlePasswordRecovery}>

@@ -5,7 +5,7 @@ import { useDate } from "../../hooks";
 import { CarInfo } from "../../types";
 import { styles } from "./Car.styles";
 export function Car(props: CarInfo) {
-  const date = useDate(props.dateCreated);
+  const date = useDate(new Date(props.dateCreated));
   const [isOptionsMenu, setIsOptionsMenu] = useState<boolean>(false);
   return (
     <li css={styles.item}>

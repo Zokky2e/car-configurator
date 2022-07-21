@@ -1,7 +1,5 @@
-import { month } from "../const";
-
 export function useDate(date: Date) {
-  const dateMonth = month[date.getMonth() - 1];
+  const dateMonth = date.getMonth() - 1;
   const dateDay = `${
     date.getDate() +
     (["", "st", "nd", "rd"][

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { CarInfo } from "../../types";
+import { CarCardInfo } from "../../types";
 import { styles } from "./CarCard.styles";
-export function CarCard(props: CarInfo) {
+export function CarCard(props: CarCardInfo) {
   return (
     <li css={styles.card}>
       <img css={styles.image} src={props.picture} alt="car" />

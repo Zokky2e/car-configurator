@@ -47,6 +47,7 @@ export const formElement = css`
 export const buttons = css`
   margin: 0 auto;
   display: flex;
+  flex-direction: row-reverse;
   gap: 4px;
   button {
     height: 44px;
