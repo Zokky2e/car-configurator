@@ -1,5 +1,20 @@
+const month = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 export function useDate(date: Date) {
-  const dateMonth = date.getMonth() - 1;
+  const dateMonth = month[date.getMonth()];
   const dateDay = `${
     date.getDate() +
     (["", "st", "nd", "rd"][
