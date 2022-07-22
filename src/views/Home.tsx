@@ -1,4 +1,4 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { db } from "../firebase";
@@ -50,23 +50,23 @@ export function Home() {
 
   async function fetchSavedCarConfigurations() {
     const q = query(collection(db, user.uid));
-
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-      setIsEmpty(true);
-      setIsLoading(false);
-      return;
-    }
-    const docsItems: CarInfo[] = [];
-    querySnapshot.docs.forEach((value) => {
-      const item = CarInfoConverter.fromFirestore(value);
-      docsItems.push(item);
+    onSnapshot(q, (querySnapshot) => {
+      if (querySnapshot.empty) {
+        setIsEmpty(true);
+        setIsLoading(false);
+        return;
+      }
+      const docsItems: CarInfo[] = [];
+      querySnapshot.docs.forEach((value) => {
+        const item = CarInfoConverter.fromFirestore(value);
+        docsItems.push(item);
+      });
+      setSavedCarConfigurations(docsItems);
+      if (docsItems.length !== 0) {
+        setIsLoading(false);
+      }
+      docsItems.length === 0 ? setIsEmpty(true) : setIsEmpty(false);
     });
-    setSavedCarConfigurations(docsItems);
-    if (docsItems.length !== 0) {
-      setIsLoading(false);
-    }
-    docsItems.length === 0 ? setIsEmpty(true) : setIsEmpty(false);
   }
   return (
     <>
