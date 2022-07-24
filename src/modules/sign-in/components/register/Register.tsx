@@ -24,6 +24,7 @@ export function Register() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (email === "" || password === "" || confirmPassword === "") return;
+    if (password === confirmPassword) return;
     userAuth.handleRegister(e, email, password);
     navigate("/", { replace: true });
   }

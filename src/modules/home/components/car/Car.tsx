@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDate } from "../../hooks";
 import { CarInfo } from "../../types";
 import { styles } from "./Car.styles";
+import loadingImage from "../../assets/loading.png";
 export function Car(props: CarInfo) {
   const date = useDate(new Date(props.dateCreated));
   const [isOptionsMenu, setIsOptionsMenu] = useState<boolean>(false);
@@ -28,7 +29,9 @@ export function Car(props: CarInfo) {
 
       const img = document.getElementById(id);
       img?.setAttribute("src", url);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     })
     .catch((error) => {
       console.log("error");
@@ -37,7 +40,11 @@ export function Car(props: CarInfo) {
     <li css={styles.item}>
       <div css={styles.info}>
         {isLoading ? (
-          <p css={styles.picture}>Loading image...</p>
+          <img
+            css={[styles.picture, styles.loading]}
+            src={loadingImage}
+            alt="car"
+          />
         ) : (
           <img id={id} css={styles.picture} alt="car" />
         )}

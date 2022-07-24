@@ -4,6 +4,8 @@ export const container = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin: 80px auto 0;
   p {
     font-size: 24px;
     font-weight: 400;

@@ -145,7 +145,9 @@ export const hidden = css`
 export const visible = css`
   visibility: visible;
 `;
-
+export const loading = css`
+  opacity: 0.1;
+`;
 export const styles = {
   item,
   info,
@@ -160,4 +162,5 @@ export const styles = {
   optionsMenu,
   hidden,
   visible,
+  loading,
 };

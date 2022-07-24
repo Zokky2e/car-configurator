@@ -23,6 +23,7 @@ export const title = css`
   font-weight: 400;
   font-size: 28px;
   line-height: 32px;
+  margin: 80px auto 0;
   color: var(--text-1);
 `;
 export const description = css`

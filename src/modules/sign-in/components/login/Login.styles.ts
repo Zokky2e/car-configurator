@@ -10,6 +10,7 @@ export const title = css`
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
+  margin: 80px auto 0;
   font-style: normal;
   color: var(--text-3);
   max-width: 420px;

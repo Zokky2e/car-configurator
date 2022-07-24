@@ -5,7 +5,6 @@ export const wrapper = css`
   max-width: 1440px;
 `;
 export const body = css`
-  margin: 80px auto;
-  padding: 0 16px;
+  margin: 0 auto;
   max-width: 1128px;
 `;

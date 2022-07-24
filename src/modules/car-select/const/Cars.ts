@@ -4,12 +4,14 @@ import rs5 from "../assets/front-1-rs5.png";
 import etron from "../assets/front-2-etron.png";
 export const Cars: CarCardInfo[] = [
   {
+    docName: "rs6",
     picture: rs6,
     year: "2022",
     name: "Audi rs6 avant",
   },
-  { picture: rs5, year: "2022", name: "Audi rs5" },
+  { docName: "rs5", picture: rs5, year: "2022", name: "Audi rs5" },
   {
+    docName: "etron",
     picture: etron,
     year: "2022",
     name: "Audi e-tron gt",
