@@ -16,4 +16,5 @@ const user = atom<User>({
   default: undefined,
   dangerouslyAllowMutability: true,
 });
+
 export const sharedAtoms = { configureButton, isLoggedIn, user };

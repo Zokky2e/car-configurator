@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const container = css`
+  max-width: 1128px;
   display: flex;
   justify-content: space-between;
   align-items: center;
