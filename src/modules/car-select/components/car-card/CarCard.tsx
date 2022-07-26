@@ -10,7 +10,10 @@ export function CarCard(props: CarCardInfo) {
   const setExteriorColor = useSetRecoilState(
     configurationViewAtoms.colorExterior
   );
+  const setModel = useSetRecoilState(configurationViewAtoms.model);
+
   function handleRedirect() {
+    setModel(props.docName);
     setName(props.name);
     setExteriorColor(props.color);
     navigate({

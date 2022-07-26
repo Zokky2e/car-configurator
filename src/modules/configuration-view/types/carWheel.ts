@@ -1,1 +1,1 @@
-export type carWheel = "one" | "two";
+export type carWheel = "One" | "Two";

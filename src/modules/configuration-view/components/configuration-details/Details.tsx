@@ -13,7 +13,6 @@ export function Details() {
   const colorExteriorPrice = useRecoilValue(
     configurationViewAtoms.colorExteriorPrice
   );
-
   const wheels = useRecoilValue(configurationViewAtoms.wheels);
   const wheelsPicture = useRecoilValue(configurationViewAtoms.wheelsPicture);
   const wheelsPrice = useRecoilValue(configurationViewAtoms.wheelsPrice);
@@ -35,18 +34,18 @@ export function Details() {
       <div>
         <p css={[styles.section, styles.priceText]}>Exterior</p>
         <DescriptionCard
-          color={colorExteriorPicture}
+          image={colorExteriorPicture}
           name={colorExterior}
           price={colorExteriorPrice}
         />
         <DescriptionCard
-          color={wheelsPicture}
+          image={wheelsPicture}
           name={wheels}
           price={wheelsPrice}
         />
         <p css={[styles.section, styles.priceText]}>Interior</p>
         <DescriptionCard
-          color={colorInteriorPicture}
+          image={colorInteriorPicture}
           name={colorInterior}
           price={colorInteriorPrice}
         />

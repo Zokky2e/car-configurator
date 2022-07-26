@@ -1,6 +1,10 @@
 import { atom } from "recoil";
-import { carWheel } from "../types";
-
+import { carModel, carWheel } from "../types";
+const model = atom<carModel>({
+  key: "configurationView.model",
+  default: "rs6",
+  dangerouslyAllowMutability: true,
+});
 const name = atom<string>({
   key: "configurationView.name",
   default: "car",
@@ -18,7 +22,7 @@ const totalPrice = atom<number>({
 });
 const wheels = atom<carWheel>({
   key: "configurationView.wheels",
-  default: "one",
+  default: "One",
   dangerouslyAllowMutability: true,
 });
 const wheelsPicture = atom<string>({
@@ -33,7 +37,7 @@ const wheelsPrice = atom<number>({
 });
 const colorExterior = atom<string>({
   key: "configurationView.color.exterior",
-  default: "black",
+  default: "Black",
   dangerouslyAllowMutability: true,
 });
 const colorExteriorPicture = atom<string>({
@@ -48,7 +52,7 @@ const colorExteriorPrice = atom<number>({
 });
 const colorInterior = atom<string>({
   key: "configurationView.color.interior",
-  default: "brown",
+  default: "Brown",
   dangerouslyAllowMutability: true,
 });
 const colorInteriorPicture = atom<string>({
@@ -63,6 +67,7 @@ const colorInteriorPrice = atom<number>({
 });
 export const configurationViewAtoms = {
   name,
+  model,
   totalPrice,
   wheels,
   wheelsPrice,

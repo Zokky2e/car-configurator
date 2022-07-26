@@ -15,18 +15,6 @@ export function Car(props: CarInfo) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   getDownloadURL(gsReference)
     .then((url) => {
-      // `url` is the download URL for 'images/stars.jpg'
-
-      // This can be downloaded directly:
-      const xhr = new XMLHttpRequest();
-      xhr.responseType = "blob";
-      xhr.onload = (event) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const blob = xhr.response;
-      };
-      xhr.open("GET", url);
-      xhr.send();
-
       const img = document.getElementById(id);
       img?.setAttribute("src", url);
       setTimeout(() => {

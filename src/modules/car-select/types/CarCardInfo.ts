@@ -1,5 +1,7 @@
+import { carModel } from "../../configuration-view";
+
 export interface CarCardInfo {
-  docName: string;
+  docName: carModel;
   picture: string;
   year: string;
   name: string;
