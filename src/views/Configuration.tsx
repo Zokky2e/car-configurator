@@ -1,6 +1,12 @@
-import { useSearchParams } from "react-router-dom";
+import { Carousel, ConfigurationInfo, Details, Options } from "../modules";
 
 export function Configuration() {
-  const [searchParams] = useSearchParams();
-  return <div>{searchParams.get("name")}</div>;
+  return (
+    <>
+      <Options />
+      <Carousel />
+      <ConfigurationInfo />
+      <Details />
+    </>
+  );
 }
