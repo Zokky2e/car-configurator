@@ -1,15 +1,20 @@
 /** @jsxImportSource @emotion/react */
-import { createSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { configurationViewAtoms } from "../../../configuration-view";
 import { CarCardInfo } from "../../types";
 import { styles } from "./CarCard.styles";
 export function CarCard(props: CarCardInfo) {
   const navigate = useNavigate();
+  const setName = useSetRecoilState(configurationViewAtoms.name);
+  const setExteriorColor = useSetRecoilState(
+    configurationViewAtoms.colorExterior
+  );
   function handleRedirect() {
+    setName(props.name);
+    setExteriorColor(props.color);
     navigate({
       pathname: "/configuration",
-      search: createSearchParams({
-        name: props.docName,
-      }).toString(),
     });
   }
   return (

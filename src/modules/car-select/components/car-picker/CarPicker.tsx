@@ -11,13 +11,14 @@ export function CarPicker() {
         Pick you favorite model and start configuring.
       </p>
       <ul css={styles.carList}>
-        {Cars.map(({ docName, picture, year, name }) => (
+        {Cars.map(({ docName, picture, year, name, color }) => (
           <CarCard
             docName={docName}
             key={name}
             picture={picture}
             year={year}
             name={name}
+            color={color}
           />
         ))}
       </ul>

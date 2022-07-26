@@ -2,8 +2,8 @@
 
 import { useRecoilState } from "recoil";
 import { signInAtoms } from "../../states";
-import { styles } from "./Options.styles";
-export function Options() {
+import { styles } from "./Chooser.styles";
+export function Chooser() {
   const [isLogin, setIsLogin] = useRecoilState(signInAtoms.isLogin);
   return (
     <footer css={styles.container}>
