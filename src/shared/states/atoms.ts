@@ -16,5 +16,20 @@ const user = atom<User>({
   default: undefined,
   dangerouslyAllowMutability: true,
 });
-
-export const sharedAtoms = { configureButton, isLoggedIn, user };
+const isNewConfiguration = atom<boolean>({
+  key: "configurationView.isNewConfiguration",
+  default: true,
+  dangerouslyAllowMutability: true,
+});
+const currentStep = atom<number>({
+  key: "configurator.step",
+  default: 1,
+  dangerouslyAllowMutability: true,
+});
+export const sharedAtoms = {
+  configureButton,
+  isLoggedIn,
+  user,
+  isNewConfiguration,
+  currentStep,
+};

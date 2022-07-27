@@ -6,13 +6,27 @@ import { useDate } from "../../hooks";
 import { CarInfo } from "../../types";
 import { styles } from "./Car.styles";
 import loadingImage from "../../assets/loading.png";
+import { useSetRecoilState } from "recoil";
+import { sharedAtoms } from "../../../../shared";
+import { configurationViewAtoms } from "../../../configuration-view";
+import { useNavigate } from "react-router-dom";
 export function Car(props: CarInfo) {
+  const navigate = useNavigate();
   const date = useDate(new Date(props.dateCreated));
   const [isOptionsMenu, setIsOptionsMenu] = useState<boolean>(false);
   const storage = getStorage();
   const gsReference = ref(storage, props.picture);
   const id = props.id;
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const setCurrentStep = useSetRecoilState(sharedAtoms.currentStep);
+  const setIsNewConfiguration = useSetRecoilState(
+    sharedAtoms.isNewConfiguration
+  );
+  const setName = useSetRecoilState(configurationViewAtoms.name);
+  const setExteriorColor = useSetRecoilState(
+    configurationViewAtoms.colorExterior
+  );
+  const setModel = useSetRecoilState(configurationViewAtoms.model);
   getDownloadURL(gsReference)
     .then((url) => {
       const img = document.getElementById(id);
@@ -24,6 +38,17 @@ export function Car(props: CarInfo) {
     .catch((error) => {
       console.log("error");
     });
+  function handleEditConfiguration() {
+    setCurrentStep(3);
+    setIsNewConfiguration(false);
+    setModel(props.model);
+    setName(props.name);
+    setExteriorColor(props.color);
+    navigate({
+      pathname: "/configuration",
+    });
+  }
+  function handleDelete() {}
   return (
     <li css={styles.item}>
       <div css={styles.info}>
@@ -56,8 +81,8 @@ export function Car(props: CarInfo) {
             isOptionsMenu ? styles.visible : styles.hidden,
           ]}
         >
-          <button>Edit configuration</button>
-          <button>Delete</button>
+          <button onClick={handleEditConfiguration}>Edit configuration</button>
+          <button onClick={handleDelete}>Delete</button>
         </ul>
       </div>
     </li>

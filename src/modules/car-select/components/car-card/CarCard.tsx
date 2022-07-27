@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
+import { sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
 import { CarCardInfo } from "../../types";
 import { styles } from "./CarCard.styles";
@@ -10,12 +11,19 @@ export function CarCard(props: CarCardInfo) {
   const setExteriorColor = useSetRecoilState(
     configurationViewAtoms.colorExterior
   );
+  const setInteriorColor = useSetRecoilState(
+    configurationViewAtoms.colorInterior
+  );
   const setModel = useSetRecoilState(configurationViewAtoms.model);
-
+  const setIsNewConfiguration = useSetRecoilState(
+    sharedAtoms.isNewConfiguration
+  );
   function handleRedirect() {
     setModel(props.docName);
     setName(props.name);
-    setExteriorColor(props.color);
+    setExteriorColor(props.colorExterior);
+    setInteriorColor(props.colorInterior);
+    setIsNewConfiguration(true);
     navigate({
       pathname: "/configuration",
     });

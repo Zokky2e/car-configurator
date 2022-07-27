@@ -17,22 +17,25 @@ export function Home() {
     toFirestore: (car: CarInfo) => {
       return {
         id: car.id,
+        model: car.model,
         picture: car.picture,
         year: car.year,
         name: car.name,
         color: car.color,
+        wheels: car.wheels,
         dateCreated: car.dateCreated,
       };
     },
     fromFirestore: (snapshot: { data: () => any }) => {
       const data = snapshot.data();
-      console.log(data.name);
       const item: CarInfo = {
         id: data.id,
+        model: data.model,
         picture: data.picture,
         year: data.year,
         name: data.name,
         color: data.color,
+        wheels: data.wheels,
         dateCreated: data.dateCreated,
       };
       return item;

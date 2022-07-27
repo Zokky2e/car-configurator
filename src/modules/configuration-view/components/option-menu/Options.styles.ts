@@ -55,6 +55,23 @@ const buttons = css`
     }
   }
 `;
+const steps = css`
+  display: flex;
+  gap: 20px;
+  span {
+    margin-right: 4px;
+    color: var(--text-4);
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-1);
+  }
+`;
+const currentStep = css`
+  font-weight: 700 !important;
+`;
 export const styles = {
   container,
   backButton,
@@ -62,4 +79,6 @@ export const styles = {
   subText,
   mainText,
   buttons,
+  steps,
+  currentStep,
 };

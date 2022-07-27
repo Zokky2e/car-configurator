@@ -5,5 +5,6 @@ export interface CarCardInfo {
   picture: string;
   year: string;
   name: string;
-  color: string;
+  colorExterior: string;
+  colorInterior: string;
 }

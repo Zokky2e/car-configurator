@@ -14,7 +14,6 @@ export function Configuration() {
   const colorExterior = useRecoilValue(configurationViewAtoms.colorExterior);
   const wheels = useRecoilValue(configurationViewAtoms.wheels);
   const colorInterior = useRecoilValue(configurationViewAtoms.colorInterior);
-
   const images = useStorageImage(model, colorExterior, wheels, colorInterior);
   const setExteriorPicture = useSetRecoilState(
     configurationViewAtoms.colorExteriorPicture
@@ -25,6 +24,7 @@ export function Configuration() {
   const setInteriorPicture = useSetRecoilState(
     configurationViewAtoms.colorInteriorPicture
   );
+
   useEffect(() => {
     setExteriorPicture(images.exteriorColor);
     setWheelsPicture(images.carWheels);

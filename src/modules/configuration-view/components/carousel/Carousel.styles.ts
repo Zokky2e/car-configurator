@@ -11,6 +11,7 @@ const image = css`
   list-style-type: none;
   display: flex;
   width: 100%;
+  height: 340px;
   overflow: hidden;
 
   position: relative;
