@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { sharedAtoms } from "../../../../shared";
-import { configurationViewAtoms } from "../../states";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { sharedAtoms } from "../..";
+import { configurationViewAtoms } from "../../../modules/configuration-view/states";
 import { styles } from "./Options.styles";
 
 export function Options() {
@@ -12,6 +12,16 @@ export function Options() {
   const name = useRecoilValue(configurationViewAtoms.name);
   const year = useRecoilValue(configurationViewAtoms.year);
   const isNewConfiguration = useRecoilValue(sharedAtoms.isNewConfiguration);
+  const setCurrentPart = useSetRecoilState(sharedAtoms.currentStep);
+  const setIsNewConfiguration = useSetRecoilState(
+    sharedAtoms.isNewConfiguration
+  );
+  function handleEditConfiguration() {
+    setCurrentPart(1);
+    setIsNewConfiguration(false);
+    navigate({ pathname: "/configurator" });
+  }
+
   return (
     <header css={styles.container}>
       <div css={styles.content}>
@@ -28,8 +38,14 @@ export function Options() {
       </div>
       {isNewConfiguration ? (
         <div css={styles.buttons}>
-          <button>Edit configuration</button>
-          <button>Delete</button>
+          <button onClick={handleEditConfiguration}>Edit configuration</button>
+          <button
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Delete
+          </button>
         </div>
       ) : (
         <div css={styles.steps}>

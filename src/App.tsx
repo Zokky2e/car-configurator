@@ -40,24 +40,14 @@ function App() {
               </>
             }
           />
-          <Route path="/configurator">
-            <Route
-              index
-              element={
-                <>
-                  <Configurator configuratorPart="Exterior" />
-                </>
-              }
-            />
-            <Route
-              path="interior"
-              element={
-                <>
-                  <Configurator configuratorPart="Interior" />
-                </>
-              }
-            />
-          </Route>
+          <Route
+            path="/configurator"
+            element={
+              <>
+                <Configurator />
+              </>
+            }
+          />
         </Routes>
       </Layout>
     </RecoilRoot>

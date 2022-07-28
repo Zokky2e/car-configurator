@@ -3,8 +3,8 @@
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { configurationViewAtoms } from "../../states";
-import { carModel, carWheel } from "../../types";
+import { configurationViewAtoms } from "../../../modules/configuration-view/states";
+import { carModel, carWheel } from "../../../modules/configuration-view/types";
 import { styles } from "./Carousel.styles";
 
 export function Carousel() {

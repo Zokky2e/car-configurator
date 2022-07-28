@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
-  Carousel,
   ConfigurationInfo,
   configurationViewAtoms,
   Details,
-  Options,
   useStorageImage,
 } from "../modules";
+import { Carousel, Options } from "../shared";
 
 export function Configuration() {
   const model = useRecoilValue(configurationViewAtoms.model);

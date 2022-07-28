@@ -1,7 +1,11 @@
-interface Props {
-  configuratorPart: string;
-}
+import { SetupMenu } from "../modules/configurator";
+import { Options } from "../shared";
 
-export function Configurator(props: Props) {
-  return <div>Configurator - {props.configuratorPart}</div>;
+export function Configurator() {
+  return (
+    <>
+      <Options />
+      <SetupMenu />
+    </>
+  );
 }
