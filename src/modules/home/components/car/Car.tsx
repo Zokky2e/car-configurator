@@ -31,11 +31,10 @@ export function Car(props: CarInfo) {
     .then((url) => {
       const img = document.getElementById(id);
       img?.setAttribute("src", url);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+      setIsLoading(false);
     })
     .catch((error) => {
+      setIsLoading(false);
       console.log("error");
     });
   function handleEditConfiguration() {

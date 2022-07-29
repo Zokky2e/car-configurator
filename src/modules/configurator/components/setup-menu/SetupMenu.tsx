@@ -3,10 +3,14 @@
 import { useRecoilValue } from "recoil";
 import { Carousel, sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
+import { configuratorAtoms } from "../../states";
 import { SetupItem } from "../setup-item";
+import { SetupSelectMenu } from "../setup-select-menu";
 import { styles } from "./SetupMenu.styles";
 export function SetupMenu() {
   const currentStep = useRecoilValue(sharedAtoms.currentStep);
+  const selectedType = useRecoilValue(configuratorAtoms.selectedType);
+  const isSelectedMenu = useRecoilValue(configuratorAtoms.isSelectedType);
   const isExterior = currentStep === 1 ? true : false;
   const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
   const exteriorColor = useRecoilValue(configurationViewAtoms.colorExterior);
@@ -21,6 +25,7 @@ export function SetupMenu() {
         <Carousel />
       </div>
       <aside css={styles.menu}>
+        <SetupSelectMenu type={selectedType} isSelected={isSelectedMenu} />
         {isExterior ? (
           <div css={styles.items}>
             <SetupItem

@@ -1,22 +1,39 @@
 /** @jsxImportSource @emotion/react */
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { configuratorAtoms } from "../../states";
+import { typeSelect } from "../../types";
 import { styles } from "./SetupItem.styles";
 
 interface ItemProps {
   image: string;
   name: string;
-  type: string;
+  type: typeSelect;
 }
 
 export function SetupItem(props: ItemProps) {
   const storage = getStorage();
   const gsReference = ref(storage, props.image);
+  const [isSelectedType, setIsSelectedType] = useRecoilState(
+    configuratorAtoms.isSelectedType
+  );
+  const setSelectedType = useSetRecoilState(configuratorAtoms.selectedType);
+
   getDownloadURL(gsReference).then((url) => {
     const img = document.getElementById(props.name);
     img?.setAttribute("src", url);
   });
+  function handleSelect() {
+    setIsSelectedType(!isSelectedType);
+    setSelectedType(props.type);
+  }
   return (
-    <button css={styles.container}>
+    <button
+      css={styles.container}
+      onClick={() => {
+        handleSelect();
+      }}
+    >
       <div>
         <img
           css={

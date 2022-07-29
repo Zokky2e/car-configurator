@@ -1,22 +1,29 @@
 import { css } from "@emotion/react";
 
 const container = css`
-  display: grid;
-  grid-template-columns: 1088px auto;
+  display: flex;
+  justify-content: space-between;
   position: relative;
-  height: 100%;
+  @media screen and (max-width: 940px) {
+    flex-flow: nowrap column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  width: 100%;
 `;
 const slider = css`
   display: flex;
   align-items: center;
 `;
 const menu = css`
+  position: relative;
   display: flex;
   justify-content: space-between;
   flex-flow: nowrap column;
   background-color: var(--background-7);
   border-left: 1px solid var(--border-5);
-  height: 864px;
+  width: 356px;
+  min-height: 80vh;
   right: 0px;
 `;
 const items = css`

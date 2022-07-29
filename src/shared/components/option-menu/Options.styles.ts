@@ -58,7 +58,7 @@ const buttons = css`
 `;
 const steps = css`
   display: flex;
-  gap: 20px;
+  gap: 40px;
   span {
     margin-right: 4px;
     color: var(--text-4);
@@ -68,6 +68,14 @@ const steps = css`
     font-size: 16px;
     line-height: 24px;
     color: var(--text-1);
+  }
+  @media screen and (max-width: 550px) {
+    flex-flow: nowrap column;
+    gap: 5px;
+    align-items: flex-start;
+    p {
+      margin: 0;
+    }
   }
 `;
 const currentStep = css`

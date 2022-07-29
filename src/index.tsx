@@ -36,6 +36,7 @@ root.render(
         }
         body {
           margin: 0;
+          min-width: 100%;
           font-family: "Inter";
           color: var(--nav-bg);
           background-color: var(--background);
