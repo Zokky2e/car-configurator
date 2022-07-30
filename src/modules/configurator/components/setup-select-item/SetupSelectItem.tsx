@@ -1,29 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { useSetRecoilState } from "recoil";
-import { configuratorAtoms } from "../../states";
 import { typeSelect } from "../../types";
-import { styles } from "./SetupItem.styles";
+import { styles } from "./SetupSelectItem.styles";
 
 interface ItemProps {
   image: string;
   name: string;
+  price: number;
   type: typeSelect;
 }
 
-export function SetupItem(props: ItemProps) {
+export function SetupSelectItem(props: ItemProps) {
   const storage = getStorage();
   const gsReference = ref(storage, props.image);
-  const setIsSelectedType = useSetRecoilState(configuratorAtoms.isSelectedType);
-  const setSelectedType = useSetRecoilState(configuratorAtoms.selectedType);
+  const name = props.name.substring(
+    props.name.lastIndexOf("=") + 1,
+    props.name.lastIndexOf(".")
+  );
   getDownloadURL(gsReference).then((url) => {
     const img = document.getElementById(props.name);
     img?.setAttribute("src", url);
   });
-  function handleSelect() {
-    setSelectedType(props.type);
-    setIsSelectedType(true);
-  }
+  function handleSelect() {}
   return (
     <button
       css={styles.container}
@@ -43,8 +41,8 @@ export function SetupItem(props: ItemProps) {
         />
       </div>
       <div css={styles.text}>
-        <p>{props.name}</p>
-        <p>{props.type}</p>
+        <p>{name}</p>
+        <p>{`${props.price.toLocaleString()} €`}</p>
       </div>
     </button>
   );

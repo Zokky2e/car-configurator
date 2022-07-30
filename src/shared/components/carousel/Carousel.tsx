@@ -9,7 +9,7 @@ import { styles } from "./Carousel.styles";
 
 export function Carousel() {
   const model = useRecoilValue(configurationViewAtoms.model);
-  const color = useRecoilValue(configurationViewAtoms.colorExterior);
+  let color = useRecoilValue(configurationViewAtoms.colorExterior);
   const wheels = useRecoilValue(configurationViewAtoms.wheels);
   const imageUrl: string[] = getImageUrl(model, color, wheels);
   function getImageUrl(model: carModel, color: string, wheels: carWheel) {

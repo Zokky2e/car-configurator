@@ -9,7 +9,6 @@ import { SetupSelectMenu } from "../setup-select-menu";
 import { styles } from "./SetupMenu.styles";
 export function SetupMenu() {
   const currentStep = useRecoilValue(sharedAtoms.currentStep);
-  const selectedType = useRecoilValue(configuratorAtoms.selectedType);
   const isSelectedMenu = useRecoilValue(configuratorAtoms.isSelectedType);
   const isExterior = currentStep === 1 ? true : false;
   const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
@@ -25,28 +24,40 @@ export function SetupMenu() {
         <Carousel />
       </div>
       <aside css={styles.menu}>
-        <SetupSelectMenu type={selectedType} isSelected={isSelectedMenu} />
-        {isExterior ? (
-          <div css={styles.items}>
-            <SetupItem
-              image={exteriorColorPicture}
-              name={exteriorColor}
-              type="Paint Color"
-            />
-            <SetupItem image={wheelsPicture} name={wheels} type="Wheels" />
-          </div>
+        {isSelectedMenu ? (
+          <SetupSelectMenu isSelected={isSelectedMenu} />
+        ) : isExterior ? (
+          <>
+            <div css={styles.items}>
+              <SetupItem
+                image={exteriorColorPicture}
+                name={exteriorColor}
+                type="Paint Color"
+              />
+              <SetupItem image={wheelsPicture} name={wheels} type="Wheels" />
+            </div>
+            <div css={styles.menuFooter}>
+              <div css={styles.price}>
+                <p css={styles.text}>Total</p>
+                <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
+              </div>
+              <button css={styles.menuButton}>Interior {">"}</button>
+            </div>
+          </>
         ) : (
-          <div css={styles.items}>
-            <SetupItem image="" name="" type="Color" />
-          </div>
+          <>
+            <div css={styles.items}>
+              <SetupItem image="" name="" type="Color" />
+            </div>
+            <div css={styles.menuFooter}>
+              <div css={styles.price}>
+                <p css={styles.text}>Total</p>
+                <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
+              </div>
+              <button css={styles.menuButton}>Summary {">"}</button>
+            </div>
+          </>
         )}
-        <div css={styles.menuFooter}>
-          <div css={styles.price}>
-            <p css={styles.text}>Total</p>
-            <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
-          </div>
-          <button css={styles.menuButton}>Interior {">"}</button>
-        </div>
       </aside>
     </div>
   );

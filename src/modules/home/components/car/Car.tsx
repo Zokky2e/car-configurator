@@ -26,6 +26,9 @@ export function Car(props: CarInfo) {
   const setExteriorColor = useSetRecoilState(
     configurationViewAtoms.colorExterior
   );
+  const setInteriorColor = useSetRecoilState(
+    configurationViewAtoms.colorInterior
+  );
   const setModel = useSetRecoilState(configurationViewAtoms.model);
   getDownloadURL(gsReference)
     .then((url) => {
@@ -43,9 +46,12 @@ export function Car(props: CarInfo) {
     setModel(props.model);
     setName(props.name);
     setExteriorColor(props.color);
-    navigate({
-      pathname: "/configuration",
-    });
+    setInteriorColor(props.colorInterior);
+    setTimeout(() => {
+      navigate({
+        pathname: "/configuration",
+      });
+    }, 500);
   }
   function handleDelete() {}
   return (

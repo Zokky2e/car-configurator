@@ -22,6 +22,7 @@ export function Home() {
         year: car.year,
         name: car.name,
         color: car.color,
+        colorInterior: car.colorInterior,
         wheels: car.wheels,
         dateCreated: car.dateCreated,
       };
@@ -35,6 +36,7 @@ export function Home() {
         year: data.year,
         name: data.name,
         color: data.color,
+        colorInterior: data.colorInterior,
         wheels: data.wheels,
         dateCreated: data.dateCreated,
       };

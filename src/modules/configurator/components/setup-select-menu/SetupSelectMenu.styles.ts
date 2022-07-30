@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 const container = css`
-  position: absolute;
+  position: relative;
   width: 356px;
   min-height: 80vh;
   background-color: var(--background-7);
@@ -26,6 +26,12 @@ const button = css`
   color: var(--text-7);
   border: none;
   cursor: pointer;
+`;
+const items = css`
+  display: flex;
+  flex-flow: nowrap column;
+  gap: 20px;
+  padding: 40px;
 `;
 const price = css`
   display: flex;
@@ -58,6 +64,7 @@ export const styles = {
   container,
   hidden,
   button,
+  items,
   price,
   menuFooter,
   text,

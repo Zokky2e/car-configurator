@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { sharedAtoms } from "../..";
 import { configurationViewAtoms } from "../../../modules/configuration-view/states";
+import { configuratorAtoms } from "../../../modules/configurator";
 import { styles } from "./Options.styles";
 
 export function Options() {
@@ -16,7 +17,11 @@ export function Options() {
   const setIsNewConfiguration = useSetRecoilState(
     sharedAtoms.isNewConfiguration
   );
+  const resetIsSelectedType = useResetRecoilState(
+    configuratorAtoms.isSelectedType
+  );
   function handleEditConfiguration() {
+    resetIsSelectedType();
     setCurrentPart(1);
     setIsNewConfiguration(false);
     navigate({ pathname: "/configurator" });

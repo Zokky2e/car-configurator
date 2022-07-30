@@ -16,7 +16,7 @@ export const Cars: CarCardInfo[] = [
     picture: rs5,
     year: "2022",
     name: "Audi rs5",
-    colorExterior: "Blue",
+    colorExterior: "Turbo Blue",
     colorInterior: "Lunar Silver",
   },
   {

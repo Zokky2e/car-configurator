@@ -7,6 +7,7 @@ export interface CarInfo {
   year: string;
   name: string;
   color: string;
+  colorInterior: string;
   wheels: carWheel;
   dateCreated: string;
 }

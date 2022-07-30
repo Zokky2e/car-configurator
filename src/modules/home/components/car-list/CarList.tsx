@@ -24,7 +24,16 @@ export function CarList() {
         <ul css={styles.carList}>
           {savedCarConfigurations.map(
             (
-              { picture, year, model, name, color, wheels, dateCreated },
+              {
+                picture,
+                year,
+                model,
+                name,
+                color,
+                colorInterior,
+                wheels,
+                dateCreated,
+              },
               id
             ) => (
               <Car
@@ -35,6 +44,7 @@ export function CarList() {
                 year={year}
                 name={name}
                 color={color}
+                colorInterior={colorInterior}
                 wheels={wheels}
                 dateCreated={dateCreated}
               />

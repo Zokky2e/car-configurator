@@ -24,9 +24,11 @@ export function CarCard(props: CarCardInfo) {
     setExteriorColor(props.colorExterior);
     setInteriorColor(props.colorInterior);
     setIsNewConfiguration(true);
-    navigate({
-      pathname: "/configuration",
-    });
+    setTimeout(() => {
+      navigate({
+        pathname: "/configuration",
+      });
+    }, 500);
   }
   return (
     <li css={styles.card}>
