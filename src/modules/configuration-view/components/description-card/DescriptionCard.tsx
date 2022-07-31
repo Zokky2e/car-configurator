@@ -1,21 +1,25 @@
 /** @jsxImportSource @emotion/react */
 
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { useEffect } from "react";
+import { item } from "../../types";
 import { styles } from "./DescriptionCard.styles";
 
-interface DescriptionProps {
-  image: string;
-  name: string;
-  price: number;
-}
-
-export function DescriptionCard(props: DescriptionProps) {
+export function DescriptionCard(props: item) {
   const storage = getStorage();
   const gsReference = ref(storage, props.image);
-  getDownloadURL(gsReference).then((url) => {
-    const img = document.getElementById(props.name);
-    img?.setAttribute("src", url);
-  });
+  useEffect(() => {
+    if (gsReference.fullPath === "empty") return;
+    getDownloadURL(gsReference)
+      .then((url) => {
+        const img = document.getElementById(props.name);
+        img?.setAttribute("src", url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gsReference]);
 
   return (
     <article css={styles.container}>

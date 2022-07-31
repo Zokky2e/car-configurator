@@ -22,8 +22,18 @@ const isNewConfiguration = atom<boolean>({
   dangerouslyAllowMutability: true,
 });
 const currentStep = atom<number>({
-  key: "configurator.step",
+  key: "configurator.currentStep",
   default: 1,
+  dangerouslyAllowMutability: true,
+});
+const previousStep = atom<number>({
+  key: "configurator.previousStep",
+  default: 2,
+  dangerouslyAllowMutability: true,
+});
+const isSelectMenuOpen = atom<boolean>({
+  key: "configurator.isSelectMenuOpen",
+  default: false,
   dangerouslyAllowMutability: true,
 });
 export const sharedAtoms = {
@@ -32,4 +42,6 @@ export const sharedAtoms = {
   user,
   isNewConfiguration,
   currentStep,
+  previousStep,
+  isSelectMenuOpen,
 };

@@ -43,6 +43,7 @@ export function Car(props: CarInfo) {
   function handleEditConfiguration() {
     setCurrentStep(3);
     setIsNewConfiguration(false);
+
     setModel(props.model);
     setName(props.name);
     setExteriorColor(props.color);

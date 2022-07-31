@@ -7,9 +7,6 @@ const container = css`
   gap: 10px;
   border: none;
   background-color: transparent;
-  :hover {
-    border: 1px solid var(--border-5);
-  }
 `;
 
 const text = css`

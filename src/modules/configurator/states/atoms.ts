@@ -1,13 +1,14 @@
 import { atom } from "recoil";
+import { item } from "../../configuration-view";
 import { typeSelect } from "../types";
 const selectedType = atom<typeSelect>({
   key: "configurator.selectedType",
   default: "Wheels",
   dangerouslyAllowMutability: true,
 });
-const isSelectedType = atom<boolean>({
-  key: "configurator.isSelectedType",
-  default: false,
+const selectedItem = atom<item>({
+  key: "configurator.selectedIem",
+  default: { image: "", name: "", price: 0 },
   dangerouslyAllowMutability: true,
 });
-export const configuratorAtoms = { selectedType, isSelectedType };
+export const configuratorAtoms = { selectedType, selectedItem };

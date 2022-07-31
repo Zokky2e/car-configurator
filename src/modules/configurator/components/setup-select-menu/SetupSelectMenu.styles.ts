@@ -3,12 +3,16 @@ import { css } from "@emotion/react";
 const container = css`
   position: relative;
   width: 356px;
-  min-height: 80vh;
   background-color: var(--background-7);
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   justify-content: space-between;
   z-index: 5;
+  top: -80px;
+
+  @media screen and (max-width: 940px) {
+    top: 0px;
+  }
 `;
 const hidden = css`
   display: none;
@@ -29,7 +33,7 @@ const button = css`
 `;
 const items = css`
   display: flex;
-  flex-flow: nowrap column;
+  flex-flow: column nowrap;
   gap: 20px;
   padding: 40px;
 `;
@@ -41,6 +45,19 @@ const price = css`
   p {
     margin: 0;
   }
+`;
+const title = css`
+  padding: 24px 40px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  display: flex;
+  border-left: 1px solid var(--border-5);
+  p {
+    margin: 0;
+  }
+  justify-content: space-between;
+  align-items: center;
 `;
 const menuFooter = css`
   display: flex;
@@ -65,6 +82,7 @@ export const styles = {
   hidden,
   button,
   items,
+  title,
   price,
   menuFooter,
   text,

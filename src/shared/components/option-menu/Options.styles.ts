@@ -81,6 +81,12 @@ const steps = css`
 const currentStep = css`
   font-weight: 700 !important;
 `;
+export const hidden = css`
+  visibility: hidden;
+`;
+export const visible = css`
+  visibility: visible;
+`;
 export const styles = {
   container,
   backButton,
@@ -90,4 +96,6 @@ export const styles = {
   buttons,
   steps,
   currentStep,
+  hidden,
+  visible,
 };

@@ -1,11 +1,17 @@
 /** @jsxImportSource @emotion/react */
 
-import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../states";
 import { DescriptionCard } from "../description-card/DescriptionCard";
 import { styles } from "./Details.styles";
 
 export function Details() {
+  const isNewConfiguration = useRecoilValue(sharedAtoms.isNewConfiguration);
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useRecoilState(sharedAtoms.currentStep);
+  const setPreviousStep = useSetRecoilState(sharedAtoms.previousStep);
   const colorExterior = useRecoilValue(configurationViewAtoms.colorExterior);
   const colorExteriorPicture = useRecoilValue(
     configurationViewAtoms.colorExteriorPicture
@@ -26,13 +32,33 @@ export function Details() {
   );
 
   const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
+
+  function handleEdit(step: number) {
+    setPreviousStep(currentStep);
+    setCurrentStep(step);
+    navigate({ pathname: "/configurator" });
+  }
   return (
     <section css={styles.container}>
       <div>
         <p>Your configuration details</p>
       </div>
       <div>
-        <p css={[styles.section, styles.priceText]}>Exterior</p>
+        <div css={styles.section}>
+          <p>Exterior</p>
+          {!isNewConfiguration ? (
+            <button
+              onClick={() => {
+                handleEdit(1);
+              }}
+              css={styles.smallText}
+            >
+              Edit
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
         <DescriptionCard
           image={colorExteriorPicture}
           name={colorExterior}
@@ -43,7 +69,21 @@ export function Details() {
           name={wheels}
           price={wheelsPrice}
         />
-        <p css={[styles.section, styles.priceText]}>Interior</p>
+        <div css={styles.section}>
+          <p>Interior</p>
+          {!isNewConfiguration ? (
+            <button
+              onClick={() => {
+                handleEdit(2);
+              }}
+              css={styles.smallText}
+            >
+              Edit
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
         <DescriptionCard
           image={colorInteriorPicture}
           name={colorInterior}

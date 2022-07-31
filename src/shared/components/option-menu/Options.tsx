@@ -1,38 +1,49 @@
 /** @jsxImportSource @emotion/react */
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
-import { sharedAtoms } from "../..";
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from "recoil";
 import { configurationViewAtoms } from "../../../modules/configuration-view/states";
-import { configuratorAtoms } from "../../../modules/configurator";
+import { sharedAtoms } from "../../states";
 import { styles } from "./Options.styles";
 
 export function Options() {
   const navigate = useNavigate();
-  const currentStep = useRecoilValue(sharedAtoms.currentStep);
+  const [currentStep, setCurrentStep] = useRecoilState(sharedAtoms.currentStep);
+  const previousStep = useRecoilValue(sharedAtoms.previousStep);
   const name = useRecoilValue(configurationViewAtoms.name);
   const year = useRecoilValue(configurationViewAtoms.year);
   const isNewConfiguration = useRecoilValue(sharedAtoms.isNewConfiguration);
-  const setCurrentPart = useSetRecoilState(sharedAtoms.currentStep);
   const setIsNewConfiguration = useSetRecoilState(
     sharedAtoms.isNewConfiguration
   );
-  const resetIsSelectedType = useResetRecoilState(
-    configuratorAtoms.isSelectedType
-  );
+  const isSelectMenuOpen = useRecoilValue(sharedAtoms.isSelectMenuOpen);
+  const resetIsSelectedType = useResetRecoilState(sharedAtoms.isSelectMenuOpen);
   function handleEditConfiguration() {
     resetIsSelectedType();
-    setCurrentPart(1);
+    setCurrentStep(1);
     setIsNewConfiguration(false);
     navigate({ pathname: "/configurator" });
   }
-
+  function handleGoBack() {
+    setCurrentStep(previousStep);
+    console.log(previousStep);
+    if (currentStep === 2 && previousStep !== 3) {
+      setCurrentStep(1);
+      return;
+    }
+    navigate(-1);
+  }
   return (
     <header css={styles.container}>
       <div css={styles.content}>
         <button
           onClick={() => {
-            navigate(-1);
+            handleGoBack();
           }}
           css={styles.backButton}
         >
@@ -46,14 +57,19 @@ export function Options() {
           <button onClick={handleEditConfiguration}>Edit configuration</button>
           <button
             onClick={() => {
-              navigate(-1);
+              handleGoBack();
             }}
           >
             Delete
           </button>
         </div>
       ) : (
-        <div css={styles.steps}>
+        <div
+          css={[
+            styles.steps,
+            isSelectMenuOpen ? styles.hidden : styles.visible,
+          ]}
+        >
           <p css={currentStep === 1 ? styles.currentStep : ""}>
             <span>01</span>Exterior
           </p>

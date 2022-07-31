@@ -27,7 +27,7 @@ const wheels = atom<carWheel>({
 });
 const wheelsPicture = atom<string>({
   key: "configurationView.wheels.picture",
-  default: "link",
+  default: "empty",
   dangerouslyAllowMutability: true,
 });
 const wheelsPrice = atom<number>({
@@ -42,7 +42,7 @@ const colorExterior = atom<string>({
 });
 const colorExteriorPicture = atom<string>({
   key: "configurationView.color.exterior.picture",
-  default: "link",
+  default: "empty",
   dangerouslyAllowMutability: true,
 });
 const colorExteriorPrice = atom<number>({
@@ -57,7 +57,7 @@ const colorInterior = atom<string>({
 });
 const colorInteriorPicture = atom<string>({
   key: "configurationView.color.interior.picture",
-  default: "link",
+  default: "empty",
   dangerouslyAllowMutability: true,
 });
 const colorInteriorPrice = atom<number>({

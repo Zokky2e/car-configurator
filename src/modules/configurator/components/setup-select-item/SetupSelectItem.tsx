@@ -21,14 +21,8 @@ export function SetupSelectItem(props: ItemProps) {
     const img = document.getElementById(props.name);
     img?.setAttribute("src", url);
   });
-  function handleSelect() {}
   return (
-    <button
-      css={styles.container}
-      onClick={() => {
-        handleSelect();
-      }}
-    >
+    <div css={styles.container}>
       <div>
         <img
           css={
@@ -44,6 +38,6 @@ export function SetupSelectItem(props: ItemProps) {
         <p>{name}</p>
         <p>{`${props.price.toLocaleString()} €`}</p>
       </div>
-    </button>
+    </div>
   );
 }

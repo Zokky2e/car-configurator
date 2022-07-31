@@ -16,6 +16,7 @@ const container = css`
 const priceText = css`
   display: flex;
   justify-content: space-between;
+  padding-top: 40px;
   p {
     font-weight: 700;
   }
@@ -24,6 +25,20 @@ const subText = css`
   color: var(--text-2);
 `;
 const section = css`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--border-5);
+  :not(p:first-of-type) {
+    padding-top: 40px;
+  }
 `;
-export const styles = { container, priceText, subText, section };
+const smallText = css`
+  background-color: transparent;
+  border: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--primary);
+`;
+export const styles = { container, priceText, subText, section, smallText };

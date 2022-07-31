@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useSetRecoilState } from "recoil";
+import { sharedAtoms } from "../../../../shared";
 import { configuratorAtoms } from "../../states";
 import { typeSelect } from "../../types";
 import { styles } from "./SetupItem.styles";
@@ -14,7 +15,7 @@ interface ItemProps {
 export function SetupItem(props: ItemProps) {
   const storage = getStorage();
   const gsReference = ref(storage, props.image);
-  const setIsSelectedType = useSetRecoilState(configuratorAtoms.isSelectedType);
+  const setIsSelectedType = useSetRecoilState(sharedAtoms.isSelectMenuOpen);
   const setSelectedType = useSetRecoilState(configuratorAtoms.selectedType);
   getDownloadURL(gsReference).then((url) => {
     const img = document.getElementById(props.name);
