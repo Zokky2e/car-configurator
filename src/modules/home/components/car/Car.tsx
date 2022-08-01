@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDate } from "../../hooks";
 import { CarInfo } from "../../types";
 import { styles } from "./Car.styles";
 import loadingImage from "../../assets/loading.png";
 import { useSetRecoilState } from "recoil";
-import { sharedAtoms } from "../../../../shared";
+import { Loading, sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
 import { useNavigate } from "react-router-dom";
 export function Car(props: CarInfo) {
@@ -17,6 +17,7 @@ export function Car(props: CarInfo) {
   const storage = getStorage();
   const gsReference = ref(storage, props.picture);
   const id = props.id;
+  const [image, setImage] = useState<string>(loadingImage);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const setCurrentStep = useSetRecoilState(sharedAtoms.currentStep);
   const setIsNewConfiguration = useSetRecoilState(
@@ -30,20 +31,23 @@ export function Car(props: CarInfo) {
     configurationViewAtoms.colorInterior
   );
   const setModel = useSetRecoilState(configurationViewAtoms.model);
-  getDownloadURL(gsReference)
-    .then((url) => {
-      const img = document.getElementById(id);
-      img?.setAttribute("src", url);
-      setIsLoading(false);
-    })
-    .catch((error) => {
-      setIsLoading(false);
-      console.log("error");
-    });
+  useEffect(() => {
+    getDownloadURL(gsReference)
+      .then((url) => {
+        setImage(url);
+      })
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gsReference]);
   function handleEditConfiguration() {
     setCurrentStep(3);
     setIsNewConfiguration(false);
-
     setModel(props.model);
     setName(props.name);
     setExteriorColor(props.color);
@@ -59,13 +63,16 @@ export function Car(props: CarInfo) {
     <li css={styles.item}>
       <div css={styles.info}>
         {isLoading ? (
+          <Loading />
+        ) : (
           <img
-            css={[styles.picture, styles.loading]}
-            src={loadingImage}
+            id={id}
+            src={image}
+            css={[
+              isLoading ? [styles.loading, styles.picture] : styles.picture,
+            ]}
             alt="car"
           />
-        ) : (
-          <img id={id} css={styles.picture} alt="car" />
         )}
         <article>
           <p css={[styles.year, styles.uppercase]}>{props.year}</p>

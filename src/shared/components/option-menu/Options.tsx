@@ -31,7 +31,6 @@ export function Options() {
   }
   function handleGoBack() {
     setCurrentStep(previousStep);
-    console.log(previousStep);
     if (currentStep === 2 && previousStep !== 3) {
       setCurrentStep(1);
       return;

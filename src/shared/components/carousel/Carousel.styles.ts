@@ -19,23 +19,4 @@ const slider = css`
   display: flex;
 `;
 
-const slide = css`
-  opacity: 0;
-
-  img {
-    width: 0;
-    max-height: 340px;
-    height: auto;
-  }
-`;
-const active = css`
-  order: -1;
-  opacity: 1;
-  img {
-    max-height: 340px;
-
-    width: 100%;
-    object-fit: cover;
-  }
-`;
-export const styles = { container, image, slider, slide, active };
+export const styles = { container, image, slider };

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { db } from "../firebase";
 import { CarList, EmptyCarList, Header, homeAtoms } from "../modules";
-import { sharedAtoms } from "../shared";
+import { Loading, sharedAtoms } from "../shared";
 import { CarInfo } from "../modules";
 export function Home() {
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
@@ -78,7 +78,9 @@ export function Home() {
       <Header />
       <section>
         {isLoading ? (
-          <p>Loading...</p>
+          <div>
+            <Loading />
+          </div>
         ) : isEmpty ? (
           <EmptyCarList />
         ) : (

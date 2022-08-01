@@ -1,18 +1,27 @@
 /** @jsxImportSource @emotion/react */
 
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { configurationViewAtoms } from "../../../modules/configuration-view/states";
 import { carModel, carWheel } from "../../../modules/configuration-view/types";
+import { sharedAtoms } from "../../states";
+import { Image } from "../carousel-image";
 import { styles } from "./Carousel.styles";
 
 export function Carousel() {
+  const [slideIndex, setSlideIndex] = useState<number>(1);
   const model = useRecoilValue(configurationViewAtoms.model);
-  let color = useRecoilValue(configurationViewAtoms.colorExterior);
+  const color = useRecoilValue(configurationViewAtoms.colorExterior);
+  const colorInterior = useRecoilValue(configurationViewAtoms.colorInterior);
+  const currentStep = useRecoilValue(sharedAtoms.currentStep);
+  const isInterior = currentStep === 2 ? true : false;
   const wheels = useRecoilValue(configurationViewAtoms.wheels);
-  const imageUrl: string[] = getImageUrl(model, color, wheels);
-  function getImageUrl(model: carModel, color: string, wheels: carWheel) {
+  const [imageUrl, setImageUrl] = useState<string[]>([]);
+  function getImageExteriorUrl(
+    model: carModel,
+    color: string,
+    wheels: carWheel
+  ) {
     const backLeft = `gs://car-configurator-5352d.appspot.com/${model}-exterior/View=Back Left, Color=${color}, Wheel Style=${wheels}.png`;
     const back = `gs://car-configurator-5352d.appspot.com/${model}-exterior/View=Back, Color=${color}, Wheel Style=${wheels}.png`;
     const frontLeft = `gs://car-configurator-5352d.appspot.com/${model}-exterior/View=Front Left, Color=${color}, Wheel Style=${wheels}.png`;
@@ -20,24 +29,30 @@ export function Carousel() {
     const side = `gs://car-configurator-5352d.appspot.com/${model}-exterior/View=Side, Color=${color}, Wheel Style=${wheels}.png`;
     return [backLeft, back, frontLeft, front, side];
   }
-  const storage = getStorage();
-  const [slideIndex, setSlideIndex] = useState<number>(1);
-  function fetchImage(image: string) {
-    const gsReference = ref(storage, image);
-    getDownloadURL(gsReference).then((url) => {
-      const img = document.getElementById(image);
-      img?.setAttribute("src", url);
-    });
+  function getImageInteriorUrl(model: carModel, color: string) {
+    const seats = `gs://car-configurator-5352d.appspot.com/${model}-interior/Car=${model.toUpperCase()}, Color=${color}, View=Seats.png`;
+    const dash = `gs://car-configurator-5352d.appspot.com/${model}-interior/Car=${model.toUpperCase()}, Color=${color}, View=Dash.png`;
+    return [seats, dash];
   }
+  useEffect(() => {
+    if (isInterior) {
+      setSlideIndex(1);
+      setImageUrl(getImageInteriorUrl(model, colorInterior));
+      return;
+    }
+    setImageUrl(getImageExteriorUrl(model, color, wheels));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInterior, wheels, color, colorInterior]);
+
   function moveLeft() {
     if (slideIndex <= 1) {
-      setSlideIndex(5);
+      setSlideIndex(imageUrl.length);
       return;
     }
     setSlideIndex(slideIndex - 1);
   }
   function moveRight() {
-    if (slideIndex >= 5) {
+    if (slideIndex >= imageUrl.length) {
       setSlideIndex(1);
       return;
     }
@@ -46,26 +61,13 @@ export function Carousel() {
   return (
     <section css={styles.container}>
       <div css={styles.image}>
-        {imageUrl.map((image, id) => {
-          const finalImage = (
-            <div
-              key={image}
-              css={
-                slideIndex === id + 1
-                  ? [styles.slide, styles.active]
-                  : [styles.slide]
-              }
-            >
-              <img id={image} alt={image} />
-            </div>
-          );
-          fetchImage(image);
-          return finalImage;
-        })}
+        {imageUrl.map((image, id) => (
+          <Image key={id} image={image} index={slideIndex} id={id} />
+        ))}
       </div>
       <div css={styles.slider}>
         <button onClick={moveLeft}>{"<"}</button>
-        <p>{`${slideIndex}/5`}</p>
+        <p>{`${slideIndex}/${imageUrl.length}`}</p>
         <button onClick={moveRight}>{">"}</button>
       </div>
     </section>
