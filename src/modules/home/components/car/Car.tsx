@@ -7,9 +7,9 @@ import { CarInfo } from "../../types";
 import { styles } from "./Car.styles";
 import loadingImage from "../../assets/loading.png";
 import { useSetRecoilState } from "recoil";
-import { Loading, sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
 import { useNavigate } from "react-router-dom";
+import { Loading, sharedAtoms } from "../../../../shared";
 export function Car(props: CarInfo) {
   const navigate = useNavigate();
   const date = useDate(new Date(props.dateCreated));
@@ -20,6 +20,7 @@ export function Car(props: CarInfo) {
   const [image, setImage] = useState<string>(loadingImage);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const setCurrentStep = useSetRecoilState(sharedAtoms.currentStep);
+  const setPreviousStep = useSetRecoilState(sharedAtoms.previousStep);
   const setIsNewConfiguration = useSetRecoilState(
     sharedAtoms.isNewConfiguration
   );
@@ -47,6 +48,7 @@ export function Car(props: CarInfo) {
   }, [gsReference]);
   function handleEditConfiguration() {
     setCurrentStep(3);
+    setPreviousStep(1);
     setIsNewConfiguration(false);
     setModel(props.model);
     setName(props.name);

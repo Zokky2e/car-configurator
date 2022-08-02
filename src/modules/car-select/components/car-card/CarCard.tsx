@@ -18,7 +18,11 @@ export function CarCard(props: CarCardInfo) {
   const setIsNewConfiguration = useSetRecoilState(
     sharedAtoms.isNewConfiguration
   );
+  const setCurrentStep = useSetRecoilState(sharedAtoms.currentStep);
+  const setPreviousStep = useSetRecoilState(sharedAtoms.previousStep);
   function handleRedirect() {
+    setCurrentStep(3);
+    setPreviousStep(2);
     setModel(props.docName);
     setName(props.name);
     setExteriorColor(props.colorExterior);

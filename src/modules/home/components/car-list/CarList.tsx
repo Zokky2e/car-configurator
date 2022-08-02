@@ -23,23 +23,21 @@ export function CarList() {
       <article>
         <ul css={styles.carList}>
           {savedCarConfigurations.map(
-            (
-              {
-                picture,
-                year,
-                model,
-                name,
-                color,
-                colorInterior,
-                wheels,
-                dateCreated,
-              },
-              id
-            ) => (
+            ({
+              id,
+              picture,
+              year,
+              model,
+              name,
+              color,
+              colorInterior,
+              wheels,
+              dateCreated,
+            }) => (
               <Car
-                id={id.toString()}
+                id={id}
                 model={model}
-                key={name}
+                key={id}
                 picture={picture}
                 year={year}
                 name={name}
