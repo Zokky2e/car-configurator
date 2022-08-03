@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { collection, doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { db } from "../../../../firebase";
 import { sharedAtoms } from "../../../../shared";
@@ -9,12 +10,14 @@ import { configurationViewAtoms } from "../../states";
 import { styles } from "./SaveConfigurationCard.styles";
 
 export function SaveConfigurationCard() {
+  const navigate = useNavigate();
   const name = useRecoilValue(configurationViewAtoms.name);
   const year = useRecoilValue(configurationViewAtoms.year);
   const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
   const color = useRecoilValue(configurationViewAtoms.colorExterior);
   const colorInterior = useRecoilValue(configurationViewAtoms.colorInterior);
   const model = useRecoilValue(configurationViewAtoms.model);
+  const id = useRecoilValue(configurationViewAtoms.id);
   const wheels = useRecoilValue(configurationViewAtoms.wheels);
   const picture = `gs://car-configurator-5352d.appspot.com/${model}-exterior/View=Side, Color=${color}, Wheel Style=${wheels}.png`;
   const user = useRecoilValue(sharedAtoms.user);
@@ -49,6 +52,7 @@ export function SaveConfigurationCard() {
     },
   };
   async function handleSave() {
+    let collectionRef;
     const today = new Date();
     const dateCreated =
       today.getFullYear() +
@@ -56,23 +60,45 @@ export function SaveConfigurationCard() {
       (today.getMonth() + 1) +
       "-" +
       today.getDate();
-    const id = today.toJSON();
-    const collectionRef = collection(db, user.uid).withConverter(
-      CarInfoConverter
-    );
-    await setDoc(doc(collectionRef), {
-      id,
-      model,
-      picture,
-      year,
-      name,
-      color,
-      colorInterior,
-      wheels,
-      dateCreated,
-    }).then((doc) => {
-      console.log(doc);
-    });
+    if (id === "new") {
+      collectionRef = collection(db, user.uid).withConverter(CarInfoConverter);
+      await setDoc(
+        doc(collectionRef),
+        {
+          id,
+          model,
+          picture,
+          year,
+          name,
+          color,
+          colorInterior,
+          wheels,
+          dateCreated,
+        },
+        { merge: true }
+      ).then(() => {
+        navigate({ pathname: "/" });
+      });
+    } else {
+      collectionRef = collection(db, user.uid).withConverter(CarInfoConverter);
+      await setDoc(
+        doc(collectionRef, "/" + id),
+        {
+          id,
+          model,
+          picture,
+          year,
+          name,
+          color,
+          colorInterior,
+          wheels,
+          dateCreated,
+        },
+        { merge: true }
+      ).then(() => {
+        navigate({ pathname: "/" });
+      });
+    }
   }
   return (
     <footer css={styles.container}>

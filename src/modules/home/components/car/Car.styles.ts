@@ -6,7 +6,7 @@ export const item = css`
   margin: 28px 0;
   @media screen and (max-width: 940px) {
     flex-flow: wrap column;
-    height: 525px;
+    max-height: 628px;
   }
 `;
 

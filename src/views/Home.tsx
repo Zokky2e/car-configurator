@@ -64,6 +64,7 @@ export function Home() {
       const docsItems: CarInfo[] = [];
       querySnapshot.docs.forEach((value) => {
         const item = CarInfoConverter.fromFirestore(value);
+        item.id = value.id;
         docsItems.push(item);
       });
       setSavedCarConfigurations(docsItems);

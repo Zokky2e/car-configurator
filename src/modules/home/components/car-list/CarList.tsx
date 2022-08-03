@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect } from "react";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import { sharedAtoms } from "../../../../shared";
 import { homeAtoms } from "../../states";
+import { CarInfo } from "../../types";
 import { Car } from "../car/Car";
 import { styles } from "./CarList.styles";
 export function CarList() {
   const setConfigureButton = useSetRecoilState(sharedAtoms.configureButton);
   const resetConfigureButton = useResetRecoilState(sharedAtoms.configureButton);
-  const savedCarConfigurations = useRecoilValue(
+  const [savedCarConfigurations, setSavedCarConfigurations] = useRecoilState(
     homeAtoms.savedCarConfigurations
   );
   useEffect(() => {
@@ -17,7 +18,15 @@ export function CarList() {
       resetConfigureButton();
     };
   });
-  useEffect(() => {}, [savedCarConfigurations]);
+  function sortByDateCreated(a: CarInfo, b: CarInfo) {
+    if (a.dateCreated < b.dateCreated) return -1;
+    if (a.dateCreated > b.dateCreated) return 1;
+    return 0;
+  }
+  useEffect(() => {
+    setSavedCarConfigurations(savedCarConfigurations.sort(sortByDateCreated));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [savedCarConfigurations]);
   return (
     <>
       <article>

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
 import { CarCardInfo } from "../../types";
@@ -8,6 +8,7 @@ import { styles } from "./CarCard.styles";
 export function CarCard(props: CarCardInfo) {
   const navigate = useNavigate();
   const setName = useSetRecoilState(configurationViewAtoms.name);
+  const resetId = useResetRecoilState(configurationViewAtoms.id);
   const setExteriorColor = useSetRecoilState(
     configurationViewAtoms.colorExterior
   );
@@ -23,6 +24,7 @@ export function CarCard(props: CarCardInfo) {
   function handleRedirect() {
     setCurrentStep(3);
     setPreviousStep(2);
+    resetId();
     setModel(props.docName);
     setName(props.name);
     setExteriorColor(props.colorExterior);
