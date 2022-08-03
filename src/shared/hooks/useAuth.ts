@@ -1,7 +1,9 @@
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import React, { useEffect } from "react";
@@ -52,7 +54,6 @@ export function useAuth() {
     if (!email || !password) return;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
         setUser(userCredential.user);
         setIsLoggedIn(true);
       })
@@ -63,6 +64,17 @@ export function useAuth() {
         console.log(errorMessage);
       });
   }
+  function handleGoogleSIgnIn() {
+    const googleProvider = new GoogleAuthProvider();
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        setUser(result.user);
+        navigate({ pathname: "/" });
+      })
+      .catch((error) => {
+        console.log("not logged in");
+      });
+  }
   function handleLogout() {
     signOut(auth);
     resetUser();
@@ -70,6 +82,7 @@ export function useAuth() {
   return {
     user: user,
     handleLogin: handleLogin,
+    handleGoogleSignIn: handleGoogleSIgnIn,
     handleRegister: handleRegister,
     handleLogout: handleLogout,
   };

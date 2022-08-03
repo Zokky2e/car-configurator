@@ -28,6 +28,10 @@ export function Register() {
     userAuth.handleRegister(e, email, password);
     navigate("/", { replace: true });
   }
+  function handleGoogle(e: React.FormEvent) {
+    e.preventDefault();
+    userAuth.handleGoogleSignIn();
+  }
   return (
     <section css={styles.container}>
       <p css={styles.title}>Register</p>
@@ -108,7 +112,9 @@ export function Register() {
           >
             Register
           </button>
-          <button css={styles.clickable}>Google</button>
+          <button onClick={handleGoogle} css={styles.clickable}>
+            Google
+          </button>
         </div>
       </form>
     </section>

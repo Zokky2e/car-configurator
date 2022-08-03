@@ -18,6 +18,10 @@ export function Login() {
     if (email === "" || password === "") return;
     userAuth.handleLogin(e, email, password);
   }
+  function handleGoogle(e: React.FormEvent) {
+    e.preventDefault();
+    userAuth.handleGoogleSignIn();
+  }
   function handlePasswordRecovery() {
     return;
   }
@@ -77,7 +81,9 @@ export function Login() {
           >
             Login
           </button>
-          <button css={styles.clickable}>Google</button>
+          <button onClick={handleGoogle} css={styles.clickable}>
+            Google
+          </button>
         </div>
       </form>
       <article css={styles.recovery} onClick={handlePasswordRecovery}>
