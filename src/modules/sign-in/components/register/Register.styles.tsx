@@ -6,19 +6,20 @@ export const container = css`
   flex-direction: column;
 `;
 export const title = css`
-  font-size: 20px;
   font-weight: 400;
-  line-height: 28px;
+  font-size: 24px;
+  line-height: 32px;
   margin: 80px auto 0;
   font-style: normal;
-  color: var(--text-3);
+  color: var(--text-1);
   max-width: 420px;
+  margin-bottom: 16px;
 `;
 
 export const form = css`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 `;
 export const formElement = css`
@@ -79,10 +80,18 @@ export const eye = css`
   width: 16px;
   cursor: pointer;
 `;
+export const hidden = css`
+  visibility: hidden;
+`;
+export const visible = css`
+  visibility: visible;
+`;
 export const styles = {
   container,
   title,
   form,
+  hidden,
+  visible,
   formElement,
   buttons,
   clickable,

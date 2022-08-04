@@ -8,13 +8,17 @@ import {
 } from "firebase/auth";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import { auth } from "../../firebase";
+import { signInAtoms } from "../../modules";
 import { sharedAtoms } from "../states";
 
 export function useAuth() {
   const [user, setUser] = useRecoilState(sharedAtoms.user);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(sharedAtoms.isLoggedIn);
+  const setIsError = useSetRecoilState(signInAtoms.isError);
+  const setErrorMessage = useSetRecoilState(signInAtoms.errorMessage);
+
   const navigate = useNavigate();
   const resetUser = useResetRecoilState(sharedAtoms.user);
   useEffect(() => {
@@ -41,12 +45,13 @@ export function useAuth() {
         console.log("register completed");
         setUser(userCredential.user);
         setIsLoggedIn(true);
+        setIsError(false);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
+        const errorMessage = error.code;
         console.log(errorMessage);
+        setIsError(true);
+        setErrorMessage(errorMessage);
       });
   }
   function handleLogin(e: React.FormEvent, email: string, password: string) {
@@ -56,33 +61,40 @@ export function useAuth() {
       .then((userCredential) => {
         setUser(userCredential.user);
         setIsLoggedIn(true);
+        setIsError(false);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
+        const errorMessage = error.code;
         console.log(errorMessage);
+        setIsError(true);
+        setErrorMessage(errorMessage);
       });
   }
-  function handleGoogleSIgnIn() {
+  function handleGoogleSignIn() {
     const googleProvider = new GoogleAuthProvider();
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result.user);
+        setIsLoggedIn(true);
         navigate({ pathname: "/" });
+        setIsError(false);
       })
       .catch((error) => {
-        console.log("not logged in");
+        const errorMessage = error.code;
+        console.log(errorMessage);
+        setIsError(true);
+        setErrorMessage(errorMessage);
       });
   }
   function handleLogout() {
+    setIsLoggedIn(false);
     signOut(auth);
     resetUser();
   }
   return {
     user: user,
     handleLogin: handleLogin,
-    handleGoogleSignIn: handleGoogleSIgnIn,
+    handleGoogleSignIn: handleGoogleSignIn,
     handleRegister: handleRegister,
     handleLogout: handleLogout,
   };

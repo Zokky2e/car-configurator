@@ -1,12 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import { useAuth } from "../../../../shared";
+import { signInAtoms } from "../../states";
+import { ErrorPopup } from "../error-popup";
 import { styles } from "./Login.styles";
 export function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isClickable, setIsClickable] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const isError = useRecoilValue(signInAtoms.isError);
   const [checked, setChecked] = useState<boolean>(false);
   const userAuth = useAuth();
   useEffect(() => {
@@ -52,10 +56,10 @@ export function Login() {
           />{" "}
           <span
             css={styles.eye}
-            onMouseDown={() => {
+            onPointerDown={() => {
               setShowPassword(true);
             }}
-            onMouseUp={() => {
+            onPointerUp={() => {
               setShowPassword(false);
             }}
           >
@@ -89,6 +93,9 @@ export function Login() {
       <article css={styles.recovery} onClick={handlePasswordRecovery}>
         Forgot password?
       </article>
+      <div css={[isError ? styles.visible : styles.hidden]}>
+        <ErrorPopup />
+      </div>
     </section>
   );
 }

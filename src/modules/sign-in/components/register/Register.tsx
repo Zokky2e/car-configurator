@@ -1,20 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { useAuth } from "../../../../shared";
+import { signInAtoms } from "../../states";
+import { ErrorPopup } from "../error-popup";
 import { styles } from "./Register.styles";
 export function Register() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isError, setIsError] = useRecoilState(signInAtoms.isError);
+  const setErrorMessage = useSetRecoilState(signInAtoms.errorMessage);
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [showConfirmedPassword, setShowConfirmedPassword] =
     useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
   const userAuth = useAuth();
-
   const [isClickable, setIsClickable] = useState<boolean>(true);
-  const navigate = useNavigate();
   useEffect(() => {
     if (email === "" || password === "" || confirmPassword === "")
       return setIsClickable(false);
@@ -24,9 +26,12 @@ export function Register() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (email === "" || password === "" || confirmPassword === "") return;
-    if (password === confirmPassword) return;
+    if (password !== confirmPassword) {
+      setIsError(true);
+      setErrorMessage("Passwords don't match!");
+      return;
+    }
     userAuth.handleRegister(e, email, password);
-    navigate("/", { replace: true });
   }
   function handleGoogle(e: React.FormEvent) {
     e.preventDefault();
@@ -60,10 +65,10 @@ export function Register() {
           />{" "}
           <span
             css={styles.eye}
-            onMouseDown={() => {
+            onPointerDown={() => {
               setShowPassword(true);
             }}
-            onMouseUp={() => {
+            onPointerUp={() => {
               setShowPassword(false);
             }}
           >
@@ -83,10 +88,10 @@ export function Register() {
           />{" "}
           <span
             css={styles.eye}
-            onMouseDown={() => {
+            onPointerDown={() => {
               setShowConfirmedPassword(true);
             }}
-            onMouseUp={() => {
+            onPointerUp={() => {
               setShowConfirmedPassword(false);
             }}
           >
@@ -115,6 +120,9 @@ export function Register() {
           <button onClick={handleGoogle} css={styles.clickable}>
             Google
           </button>
+        </div>
+        <div css={[isError ? styles.visible : styles.hidden]}>
+          <ErrorPopup />
         </div>
       </form>
     </section>
