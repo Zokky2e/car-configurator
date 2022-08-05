@@ -1,15 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { ErrorPopup, useAuth } from "../../../../shared";
+import { ErrorPopup, SuccessPopup, useAuth } from "../../../../shared";
 import { signInAtoms } from "../../states";
+import { RecoveryPopup } from "../recovery-popup";
 import { styles } from "./Login.styles";
 export function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isClickable, setIsClickable] = useState<boolean>(true);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isPasswordRecoveryPopup, setIsPasswordRecoveryPopup] =
+    useState<boolean>(false);
   const isError = useRecoilValue(signInAtoms.isError);
+  const isSuccess = useRecoilValue(signInAtoms.isSuccess);
   const [checked, setChecked] = useState<boolean>(false);
   const userAuth = useAuth();
   useEffect(() => {
@@ -25,11 +29,14 @@ export function Login() {
     e.preventDefault();
     userAuth.handleGoogleSignIn();
   }
-  function handlePasswordRecovery() {
-    return;
-  }
   return (
     <section css={styles.container}>
+      <RecoveryPopup
+        trigger={isPasswordRecoveryPopup}
+        setTrigger={(value) => {
+          setIsPasswordRecoveryPopup(value);
+        }}
+      />
       <p css={styles.title}>Login</p>
       <form css={styles.form}>
         <label css={styles.formElement}>
@@ -89,11 +96,16 @@ export function Login() {
           </button>
         </div>
       </form>
-      <article css={styles.recovery} onClick={handlePasswordRecovery}>
+      <article
+        css={styles.recovery}
+        onClick={() => {
+          setIsPasswordRecoveryPopup(true);
+        }}
+      >
         Forgot password?
       </article>
-      <div css={[isError ? styles.visible : styles.hidden]}>
-        <ErrorPopup />
+      <div css={[isError || isSuccess ? styles.visible : styles.hidden]}>
+        {isError ? <ErrorPopup /> : <SuccessPopup />}
       </div>
     </section>
   );

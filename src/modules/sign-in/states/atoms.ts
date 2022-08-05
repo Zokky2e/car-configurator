@@ -15,4 +15,20 @@ const errorMessage = atom<string>({
   default: "",
   dangerouslyAllowMutability: true,
 });
-export const signInAtoms = { isLogin, isError, errorMessage };
+const isSuccess = atom<boolean>({
+  key: "signin.success.isSuccess",
+  default: false,
+  dangerouslyAllowMutability: true,
+});
+const successMessage = atom<string>({
+  key: "signin.success.successMessage",
+  default: "",
+  dangerouslyAllowMutability: true,
+});
+export const signInAtoms = {
+  isLogin,
+  isError,
+  errorMessage,
+  isSuccess,
+  successMessage,
+};

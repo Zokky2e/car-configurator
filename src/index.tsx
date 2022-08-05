@@ -32,6 +32,7 @@ root.render(
           --text-5: #c7c7d1;
           --text-7: #fcfcfd;
           --error: #d2341e;
+          --success-1: #6ceab5;
           --error-1: #ea7b6c;
           --modal-shadow: rgba(0, 0, 0, 0.06);
         }

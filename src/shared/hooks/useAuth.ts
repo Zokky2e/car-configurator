@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -18,6 +19,8 @@ export function useAuth() {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(sharedAtoms.isLoggedIn);
   const setIsError = useSetRecoilState(signInAtoms.isError);
   const setErrorMessage = useSetRecoilState(signInAtoms.errorMessage);
+  const setIsSuccess = useSetRecoilState(signInAtoms.isSuccess);
+  const setSuccessMessage = useSetRecoilState(signInAtoms.successMessage);
 
   const navigate = useNavigate();
   const resetUser = useResetRecoilState(sharedAtoms.user);
@@ -86,6 +89,19 @@ export function useAuth() {
         setErrorMessage(errorMessage);
       });
   }
+  function handlePasswordRecovery(email: string) {
+    sendPasswordResetEmail(auth, email)
+      .then((success) => {
+        setIsError(false);
+        setIsSuccess(true);
+        setSuccessMessage("Password reset sent!");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        setIsError(true);
+        setErrorMessage(errorCode);
+      });
+  }
   function handleLogout() {
     setIsLoggedIn(false);
     signOut(auth);
@@ -96,6 +112,7 @@ export function useAuth() {
     handleLogin: handleLogin,
     handleGoogleSignIn: handleGoogleSignIn,
     handleRegister: handleRegister,
+    handlePasswordRecovery: handlePasswordRecovery,
     handleLogout: handleLogout,
   };
 }
