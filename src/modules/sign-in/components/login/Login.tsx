@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { useAuth } from "../../../../shared";
+import { ErrorPopup, useAuth } from "../../../../shared";
 import { signInAtoms } from "../../states";
-import { ErrorPopup } from "../error-popup";
 import { styles } from "./Login.styles";
 export function Login() {
   const [email, setEmail] = useState<string>("");

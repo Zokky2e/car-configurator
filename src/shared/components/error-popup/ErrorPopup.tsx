@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
+import { signInAtoms } from "../../../modules";
 import warning from "../../assets/Warning.svg";
-import { signInAtoms } from "../../states";
 import { styles } from "./ErrorPopup.styles";
 
 export function ErrorPopup() {
