@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { Loading, sharedAtoms } from "../../../../shared";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../firebase";
+import { signInAtoms } from "../../../sign-in";
 export function Car(props: CarInfo) {
   const navigate = useNavigate();
   const date = useDate(new Date(props.dateCreated));
@@ -37,6 +38,10 @@ export function Car(props: CarInfo) {
     configurationViewAtoms.colorInterior
   );
   const setModel = useSetRecoilState(configurationViewAtoms.model);
+  const setIsError = useSetRecoilState(signInAtoms.isError);
+  const setErrorMessage = useSetRecoilState(signInAtoms.errorMessage);
+  const setIsSuccess = useSetRecoilState(signInAtoms.isSuccess);
+  const setSuccessMessage = useSetRecoilState(signInAtoms.successMessage);
   useEffect(() => {
     getDownloadURL(gsReference)
       .then((url) => {
@@ -67,9 +72,15 @@ export function Car(props: CarInfo) {
     }, 500);
   }
   async function handleDelete() {
-    await deleteDoc(doc(db, user.uid + "/", props.id)).then(() => {
-      console.log("Doc deleted!");
-    });
+    await deleteDoc(doc(db, user.uid + "/", props.id))
+      .then(() => {
+        setIsSuccess(true);
+        setSuccessMessage("You have successfully deleted a car configuration!");
+      })
+      .catch((error) => {
+        setIsError(true);
+        setErrorMessage(error);
+      });
   }
   return (
     <li css={styles.item}>

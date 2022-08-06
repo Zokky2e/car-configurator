@@ -7,6 +7,9 @@ export const carList = css`
   margin: 0 auto;
   list-style-type: none;
   padding: 0;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const styles = { carList };

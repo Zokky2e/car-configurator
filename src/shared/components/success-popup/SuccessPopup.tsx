@@ -2,6 +2,7 @@
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { signInAtoms } from "../../../modules";
 import success from "../../assets/Success.svg";
+import exitButton from "../../assets/Exit.svg";
 import { styles } from "./SuccesPopup.styles";
 
 export function SuccessPopup() {
@@ -12,12 +13,16 @@ export function SuccessPopup() {
   }
   return (
     <div css={styles.container}>
-      <img src={success} alt="warning" />
-      <p>Success</p>
-      <p>{successMessage}</p>
-      <button onClick={resetIsSuccessMessage} css={styles.button}>
-        X
-      </button>
+      <div css={styles.content}>
+        <img src={success} alt="warning" />
+        <p>Success</p>
+        <p>{successMessage}</p>
+      </div>
+      <div>
+        <button onClick={resetIsSuccessMessage} css={styles.button}>
+          <img src={exitButton} alt="exit" />
+        </button>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { signInAtoms } from "../../../modules";
 import warning from "../../assets/Warning.svg";
+import exitButton from "../../assets/Exit.svg";
 import { styles } from "./ErrorPopup.styles";
 
 export function ErrorPopup() {
@@ -26,12 +27,16 @@ export function ErrorPopup() {
   }, [errorMessage]);
   return (
     <div css={styles.container}>
-      <img src={warning} alt="warning" />
-      <p>Error</p>
-      <p>{message}</p>
-      <button onClick={resetIsError} css={styles.button}>
-        X
-      </button>
+      <div css={styles.content}>
+        <img src={warning} alt="warning" />
+        <p>Success</p>
+        <p>{message}</p>
+      </div>
+      <div>
+        <button onClick={resetIsError} css={styles.button}>
+          <img src={exitButton} alt="exit" />
+        </button>
+      </div>
     </div>
   );
 }

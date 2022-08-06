@@ -6,7 +6,7 @@ export const container = css`
   justify-content: space-between;
   align-items: center;
 
-  margin: 80px auto 0;
+  margin: 0 auto;
   p {
     font-size: 24px;
     font-weight: 400;
@@ -27,5 +27,11 @@ export const container = css`
     cursor: pointer;
   }
 `;
+export const hidden = css`
+  visibility: hidden;
+`;
+export const visible = css`
+  visibility: visible;
+`;
 
-export const styles = { container };
+export const styles = { container, hidden, visible };
