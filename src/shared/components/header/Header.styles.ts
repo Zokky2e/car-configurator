@@ -24,15 +24,39 @@ export const navigation = css`
   list-style-type: none;
 `;
 export const hamburger = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  span {
+    display: block;
+    border-radius: 9999px;
+    background-color: var(--nav-text);
+    height: 2px;
+    width: 32px;
+    transition: all 0.2s ease-in-out;
+  }
+  span:not(:last-of-type) {
+    margin-bottom: 4px;
+    width: 40px;
+  }
   width: 40px;
   height: 40px;
   border: none;
   background-color: transparent;
 `;
+export const activeMenu = css`
+  transition-delay: 0.2s;
 
+  span:first-of-type,
+  span:last-of-type {
+    transition-delay: 0.2s;
+    transform: rotate(45deg);
+  }
+  span:first-of-type {
+    transform: translateY(2px) rotate(45deg);
+    width: 32px;
+  }
+  span:last-of-type {
+    transform: translateX(0px) translateY(-4px) rotate(-45deg);
+  }
+`;
 export const configureButton = css`
   color: var(--nav-text);
   width: 120px;
@@ -69,8 +93,20 @@ export const mainMenu = css`
   }
 `;
 export const hidden = css`
+  transition-delay: 0.2s;
   visibility: hidden;
 `;
 export const visible = css`
+  transition-delay: 0.2s;
   visibility: visible;
 `;
+export const styles = {
+  container,
+  navigation,
+  hamburger,
+  visible,
+  hidden,
+  mainMenu,
+  configureButton,
+  activeMenu,
+};

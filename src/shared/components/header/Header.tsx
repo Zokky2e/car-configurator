@@ -1,42 +1,60 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useResetRecoilState, useRecoilValue } from "recoil";
 import { useAuth } from "../../hooks";
 import { sharedAtoms } from "../../states";
-import {
-  container,
-  hamburger,
-  navigation,
-  configureButton,
-  mainMenu,
-  visible,
-  hidden,
-} from "./Header.styles";
+import { styles } from "./Header.styles";
 
 export function Header() {
   const emptyState = useRecoilValue(sharedAtoms.configureButton);
+  const mainMenuRef = useRef<HTMLUListElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
   const [isMainMenu, setIsMainMenu] = useState<boolean>(false);
   const isLoggedIn = useRecoilValue(sharedAtoms.isLoggedIn);
   const resetIsLoggedIn = useResetRecoilState(sharedAtoms.isLoggedIn);
   const resetUser = useResetRecoilState(sharedAtoms.user);
   const navigate = useNavigate();
   const user = useAuth();
-  useEffect(() => {});
+  useEffect(() => {
+    function exitHandler(event: any) {
+      if (
+        mainMenuRef.current &&
+        !mainMenuRef.current.contains(event.target) &&
+        !hamburgerRef.current?.contains(event.target)
+      ) {
+        setIsMainMenu(false);
+      }
+    }
+    document.addEventListener("pointerdown", exitHandler);
+    return () => {
+      document.removeEventListener("pointerdown", exitHandler);
+    };
+  });
+  function handleGoToHome() {
+    setIsMainMenu(!isMainMenu);
+    isLoggedIn && navigate("/", { replace: true });
+  }
+  function handleLogout() {
+    setIsMainMenu(!isMainMenu);
+    resetIsLoggedIn();
+    resetUser();
+    user.handleLogout();
+  }
   return (
     <>
-      <header css={container}>
+      <header css={styles.container}>
         <div>
           <img src={require("../../assets/logo192.png")} alt="logo" />
         </div>
-        <ul css={navigation}>
+        <ul css={styles.navigation}>
           <>
             {emptyState ? (
               <button
                 onClick={() => {
                   isLoggedIn && navigate("/car-select");
                 }}
-                css={configureButton}
+                css={styles.configureButton}
               >
                 Configure a car
               </button>
@@ -46,21 +64,29 @@ export function Header() {
           </>
           {isLoggedIn ? (
             <button
-              css={hamburger}
+              ref={hamburgerRef}
+              css={[
+                isMainMenu
+                  ? [styles.hamburger, styles.activeMenu]
+                  : styles.hamburger,
+              ]}
               onClick={() => {
                 setIsMainMenu(!isMainMenu);
               }}
             >
-              <img src={require("../../assets/hamburger.png")} alt="logo" />
+              <span></span>
+              <span></span>
             </button>
           ) : (
             ""
           )}
-          <ul css={[mainMenu, isMainMenu ? visible : hidden]}>
+          <ul
+            ref={mainMenuRef}
+            css={[styles.mainMenu, isMainMenu ? styles.visible : styles.hidden]}
+          >
             <button
               onClick={() => {
-                setIsMainMenu(!isMainMenu);
-                isLoggedIn && navigate("/", { replace: true });
+                handleGoToHome();
               }}
             >
               My saved configurations
@@ -68,10 +94,7 @@ export function Header() {
             {isLoggedIn ? (
               <button
                 onClick={() => {
-                  setIsMainMenu(!isMainMenu);
-                  resetIsLoggedIn();
-                  resetUser();
-                  user.handleLogout();
+                  handleLogout();
                 }}
               >
                 Logout
