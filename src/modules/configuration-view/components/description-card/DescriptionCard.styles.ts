@@ -4,7 +4,8 @@ const container = css`
   display: flex;
   justify-content: space-between;
   margin: 20px auto;
-  width: 664px;
+  max-width: 664px;
+  width: 100%;
   align-items: center;
   p:first-letter {
     text-transform: uppercase;

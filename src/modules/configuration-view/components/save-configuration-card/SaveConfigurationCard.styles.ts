@@ -3,6 +3,11 @@ import { css } from "@emotion/react";
 const container = css`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 800px) {
+    flex-flow: column nowrap;
+    align-items: center;
+    max-height: none;
+  }
   padding-left: 40px;
   margin-top: 80px;
   max-height: 80px;
@@ -24,6 +29,7 @@ const description = css`
   justify-content: space-between;
   max-height: 80px;
   gap: 12px;
+
   p {
     font-family: "Optician Sans";
     font-style: normal;
@@ -42,6 +48,11 @@ const price = css`
   align-items: center;
   justify-content: flex-end;
   gap: 32px;
+  @media screen and (max-width: 800px) {
+    flex-flow: column nowrap;
+    align-items: center;
+    max-height: none;
+  }
   p {
     font-weight: 400;
     font-size: 24px;

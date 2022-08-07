@@ -1,11 +1,16 @@
 import { css } from "@emotion/react";
 
 const container = css`
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  @media screen and (max-width: 580px) {
+    display: flex;
+    flex-direction: column;
+  }
   max-width: 1128px;
+  width: 100%;
   margin: 60px auto 0px;
   color: var(--text-1);
-  justify-content: space-between;
   p {
     font-weight: 400;
     font-size: 24px;

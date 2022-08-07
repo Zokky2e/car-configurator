@@ -6,7 +6,7 @@ interface InfoProps {
   message: string;
 }
 export function Info(props: InfoProps) {
-  const [isPointerEnter, setIsPointerEnter] = useState<boolean>(true);
+  const [isPointerEnter, setIsPointerEnter] = useState<boolean>(false);
   function handlePointerEnter() {
     setIsPointerEnter(true);
   }
