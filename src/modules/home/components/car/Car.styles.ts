@@ -94,9 +94,42 @@ export const optionsButton = css`
   }
   background-color: transparent;
   border: none;
-  transform: rotate(90deg);
   position: relative;
+  span {
+    display: block;
+    margin: 2px;
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background-color: var(--primary-3);
+    transition: all 0.2s ease-in-out;
+  }
 `;
+const activeOptionsMenu = css`
+  transition-delay: 0.2s;
+
+  span:first-of-type,
+  span:last-of-type {
+    transition-delay: 0.2s;
+    transform: rotate(45deg);
+    width: 16px;
+    height: 2px;
+  }
+
+  span:first-of-type {
+    transition-delay: 0.2s;
+    transform: translateX(-7px) translateY(4px) rotate(45deg);
+  }
+  span:last-of-type {
+    transition-delay: 0.2s;
+    transform: translateX(-7px) translateY(-6px) rotate(-45deg);
+  }
+  span:nth-of-type(2) {
+    transition-delay: 0.2s;
+    width: 0;
+  }
+`;
+
 export const optionsMenu = css`
   position: relative;
   z-index: 5;
@@ -140,9 +173,11 @@ export const optionsMenu = css`
 `;
 
 export const hidden = css`
+  transition-delay: 0.2s;
   visibility: hidden;
 `;
 export const visible = css`
+  transition-delay: 0.2s;
   visibility: visible;
 `;
 export const loading = css`
@@ -159,6 +194,7 @@ export const styles = {
   uppercase,
   options,
   optionsButton,
+  activeOptionsMenu,
   optionsMenu,
   hidden,
   visible,

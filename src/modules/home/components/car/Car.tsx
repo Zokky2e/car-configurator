@@ -107,9 +107,15 @@ export function Car(props: CarInfo) {
       <div css={styles.options}>
         <button
           onClick={() => setIsOptionsMenu(!isOptionsMenu)}
-          css={styles.optionsButton}
+          css={[
+            isOptionsMenu
+              ? [styles.optionsButton, styles.activeOptionsMenu]
+              : styles.optionsButton,
+          ]}
         >
-          dots
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
         <ul
           css={[

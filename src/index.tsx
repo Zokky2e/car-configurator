@@ -24,6 +24,7 @@ root.render(
           --icon-6: #f1f1f4;
           --basic-white: #ffffff;
           --primary-1: #3f3fe4;
+          --primary-3: #9898f0;
           --primary: #1e1ed2;
           --text-1: #2e2e38;
           --text-2: #505062;
