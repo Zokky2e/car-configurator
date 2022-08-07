@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 const container = css`
   display: flex;
   max-width: 1128px;
-  margin: 60px auto 80px;
+  margin: 60px auto 0px;
   color: var(--text-1);
   justify-content: space-between;
   p {

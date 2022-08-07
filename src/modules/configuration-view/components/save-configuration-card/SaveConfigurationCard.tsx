@@ -4,7 +4,7 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { db } from "../../../../firebase";
-import { sharedAtoms } from "../../../../shared";
+import { Info, sharedAtoms } from "../../../../shared";
 import { CarInfo } from "../../../home";
 import { configurationViewAtoms } from "../../states";
 import { styles } from "./SaveConfigurationCard.styles";
@@ -107,7 +107,11 @@ export function SaveConfigurationCard() {
         <p>{name}</p>
       </div>
       <div css={styles.price}>
-        <p>Total</p>
+        <p css={styles.text}>
+          <p css={styles.uppercase}>Total</p>
+          <Info message={"Value calculated in euros"} />
+        </p>
+
         <p>{`${totalPrice.toLocaleString()} €`}</p>
         <button css={styles.button} onClick={handleSave}>
           Save your configuration

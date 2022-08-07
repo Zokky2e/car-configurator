@@ -60,18 +60,26 @@ const menuButton = css`
   cursor: pointer;
 `;
 const text = css`
+  display: flex;
+  gap: 4px;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--text-4);
+  span {
+    position: relative;
+    top: 2px;
+  }
 `;
 const number = css`
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
   color: var(--text-1);
+`;
+const uppercase = css`
+  text-transform: uppercase;
 `;
 export const styles = {
   container,
@@ -83,4 +91,5 @@ export const styles = {
   menuButton,
   text,
   number,
+  uppercase,
 };

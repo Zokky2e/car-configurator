@@ -2,7 +2,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { Carousel, sharedAtoms } from "../../../../shared";
+import { Carousel, Info, sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
 import { SetupItem } from "../setup-item";
 import { SetupSelectMenu } from "../setup-select-menu";
@@ -48,7 +48,12 @@ export function SetupMenu() {
             </div>
             <div css={styles.menuFooter}>
               <div css={styles.price}>
-                <p css={styles.text}>Total</p>
+                <p css={styles.text}>
+                  <p css={styles.uppercase}>Total</p>
+                  <span>
+                    <Info message={"Value calculated in euros"} />
+                  </span>
+                </p>
                 <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
               </div>
               <button
@@ -72,7 +77,13 @@ export function SetupMenu() {
             </div>
             <div css={styles.menuFooter}>
               <div css={styles.price}>
-                <p css={styles.text}>Total</p>
+                <p css={styles.text}>
+                  <p css={styles.uppercase}>Total</p>
+                  <span>
+                    <Info message={"Value calculated in euros"} />
+                  </span>
+                </p>
+
                 <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
               </div>
               <button

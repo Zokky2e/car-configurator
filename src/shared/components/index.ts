@@ -6,3 +6,4 @@ export * from "./loading-component";
 export * from "./carousel-image";
 export * from "./error-popup";
 export * from "./success-popup";
+export * from "./info-component";

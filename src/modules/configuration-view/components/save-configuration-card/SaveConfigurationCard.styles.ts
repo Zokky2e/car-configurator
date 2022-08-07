@@ -1,22 +1,28 @@
 import { css } from "@emotion/react";
 
 const container = css`
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 40px;
+  margin-top: 80px;
   max-height: 80px;
   background-color: var(--background-7);
   border-top: 1px solid var(--text-5);
 `;
 const button = css`
+  position: relative;
   height: 100%;
+  max-height: 80px;
   max-width: 356px;
   background-color: var(--primary);
   color: var(--text-7);
   padding: 28px 96px;
+  border: none;
 `;
 const description = css`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  max-height: 80px;
   gap: 12px;
   p {
     font-family: "Optician Sans";
@@ -42,11 +48,26 @@ const price = css`
     line-height: 32px;
   }
   p:first-of-type {
+    margin: 0;
     color: var(--text-4);
-    text-transform: uppercase;
     font-size: 14px;
     line-height: 20px;
+    letter-spacing: 2px;
   }
 `;
+const text = css`
+  display: flex;
+  gap: 4px;
+`;
+const uppercase = css`
+  text-transform: uppercase;
+`;
 
-export const styles = { container, button, description, price };
+export const styles = {
+  container,
+  button,
+  description,
+  price,
+  uppercase,
+  text,
+};

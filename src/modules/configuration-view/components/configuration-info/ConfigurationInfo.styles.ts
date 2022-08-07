@@ -31,12 +31,21 @@ const mainText = css`
   letter-spacing: -2px;
 `;
 const smallText = css`
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row nowrap;
+  gap: 4px;
+  p {
+    margin: 0;
+    color: var(--text-4);
+    align-items: center;
+    margin-bottom: 2px;
+  }
   margin: 24px auto 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 2px;
-  text-transform: uppercase;
 `;
 const mediumText = css`
   margin: 0 auto 36px;
@@ -44,5 +53,14 @@ const mediumText = css`
   font-size: 24px;
   line-height: 32px;
 `;
-
-export const styles = { container, subText, mainText, smallText, mediumText };
+const uppercase = css`
+  text-transform: uppercase;
+`;
+export const styles = {
+  container,
+  subText,
+  mainText,
+  smallText,
+  mediumText,
+  uppercase,
+};
