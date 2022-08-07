@@ -17,6 +17,9 @@ const active = css`
     width: 100%;
     padding: 0 40px 0 40px;
     object-fit: cover;
+    @media screen and (max-width: 940px) {
+      padding: 0;
+    }
   }
 `;
 export const styles = { slide, active };

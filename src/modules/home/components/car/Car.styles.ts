@@ -76,6 +76,11 @@ export const options = css`
   flex-flow: wrap column;
   @media screen and (max-width: 940px) {
     flex-direction: row-reverse;
+    align-self: flex-end;
+    gap: 8px;
+    button {
+      text-align: center;
+    }
   }
   justify-content: flex-end;
   float: right;
