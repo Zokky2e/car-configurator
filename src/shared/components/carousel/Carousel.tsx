@@ -7,7 +7,8 @@ import { carModel, carWheel } from "../../../modules/configuration-view/types";
 import { sharedAtoms } from "../../states";
 import { Image } from "../carousel-image";
 import { styles } from "./Carousel.styles";
-
+import { ReactComponent as ArrowLeft } from "../../assets/Arrow-left.svg";
+import { ReactComponent as ArrowRight } from "../../assets/Arrow-right.svg";
 export function Carousel() {
   const [slideIndex, setSlideIndex] = useState<number>(1);
   const model = useRecoilValue(configurationViewAtoms.model);
@@ -66,9 +67,9 @@ export function Carousel() {
         ))}
       </div>
       <div css={styles.slider}>
-        <button onClick={moveLeft}>{"<"}</button>
-        <p>{`${slideIndex}/${imageUrl.length}`}</p>
-        <button onClick={moveRight}>{">"}</button>
+        <button onClick={moveLeft}>{<ArrowLeft />}</button>
+        <p css={styles.firstLetter}>{`${slideIndex} / ${imageUrl.length}`}</p>
+        <button onClick={moveRight}>{<ArrowRight />}</button>
       </div>
     </section>
   );

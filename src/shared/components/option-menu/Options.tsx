@@ -10,6 +10,7 @@ import {
 import { configurationViewAtoms } from "../../../modules/configuration-view/states";
 import { sharedAtoms } from "../../states";
 import { styles } from "./Options.styles";
+import { ReactComponent as ArrowLeft } from "../../assets/Arrow-left.svg";
 
 export function Options() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ export function Options() {
           }}
           css={styles.backButton}
         >
-          {"<"}
+          {<ArrowLeft />}
         </button>
         <p css={styles.subText}>{year}</p>
         <p css={styles.mainText}>{name}</p>

@@ -7,6 +7,7 @@ import { configurationViewAtoms } from "../../../configuration-view";
 import { SetupItem } from "../setup-item";
 import { SetupSelectMenu } from "../setup-select-menu";
 import { styles } from "./SetupMenu.styles";
+import { ReactComponent as ArrowRight } from "../../../../shared/assets/Arrow-right.svg";
 export function SetupMenu() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useRecoilState(sharedAtoms.currentStep);
@@ -62,7 +63,7 @@ export function SetupMenu() {
                 }}
                 css={styles.menuButton}
               >
-                Interior {">"}
+                <p>Interior</p> <p>{<ArrowRight />}</p>
               </button>
             </div>
           </>
@@ -93,7 +94,7 @@ export function SetupMenu() {
                 }}
                 css={styles.menuButton}
               >
-                Summary {">"}
+                <p>Summary</p> <p>{<ArrowRight />}</p>
               </button>
             </div>
           </>

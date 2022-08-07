@@ -46,6 +46,8 @@ const menuFooter = css`
   flex-flow: nowrap column;
 `;
 const menuButton = css`
+  display: flex;
+  gap: 6px;
   height: 68px;
   padding: 12px 40px;
   font-size: 14px;

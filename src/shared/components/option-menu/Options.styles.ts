@@ -15,6 +15,7 @@ const backButton = css`
   height: 16px;
   align-self: center;
   width: 16px;
+  cursor: pointer;
 `;
 const content = css`
   display: flex;

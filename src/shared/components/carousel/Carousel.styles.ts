@@ -17,6 +17,16 @@ const image = css`
 `;
 const slider = css`
   display: flex;
+  color: var(--text-5);
+  gap: 10px;
+  button {
+    border: none;
+    cursor: pointer;
+  }
 `;
-
-export const styles = { container, image, slider };
+const firstLetter = css`
+  :first-letter {
+    color: var(--text-1);
+  }
+`;
+export const styles = { container, image, slider, firstLetter };
