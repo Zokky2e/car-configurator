@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 const tooltip = css`
   position: relative;
+  top: 2px;
   margin: 0 !important;
   [title]:before {
     position: absolute;

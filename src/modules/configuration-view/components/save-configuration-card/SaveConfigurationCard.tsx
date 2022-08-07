@@ -107,11 +107,10 @@ export function SaveConfigurationCard() {
         <p>{name}</p>
       </div>
       <div css={styles.price}>
-        <p css={styles.text}>
+        <div css={styles.text}>
           <p css={styles.uppercase}>Total</p>
           <Info message={"Value calculated in euros"} />
-        </p>
-
+        </div>
         <p>{`${totalPrice.toLocaleString()} €`}</p>
         <button css={styles.button} onClick={handleSave}>
           Save your configuration

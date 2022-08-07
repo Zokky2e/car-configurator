@@ -69,12 +69,14 @@ const text = css`
   line-height: 20px;
   letter-spacing: 2px;
   color: var(--text-4);
-  span {
+  p {
     position: relative;
     top: 2px;
   }
 `;
 const number = css`
+  position: relative;
+  top: 4px;
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;

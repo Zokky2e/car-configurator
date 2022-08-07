@@ -14,7 +14,7 @@ export function Info(props: InfoProps) {
     setIsPointerEnter(false);
   }
   return (
-    <p css={styles.tooltip}>
+    <div css={styles.tooltip}>
       {isPointerEnter ? (
         <span css={styles.message}>{props.message}</span>
       ) : (
@@ -26,6 +26,6 @@ export function Info(props: InfoProps) {
       >
         <InfoSvg />
       </p>
-    </p>
+    </div>
   );
 }

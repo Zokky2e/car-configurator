@@ -54,26 +54,29 @@ const price = css`
     max-height: none;
   }
   p {
+    margin: 0;
+    color: var(--text-1) !important;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
   }
+`;
+const text = css`
+  position: relative;
+  top: 4px;
+  display: flex;
+  gap: 4px;
   p:first-of-type {
     margin: 0;
-    color: var(--text-4);
+    color: var(--text-4) !important;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 2px;
   }
 `;
-const text = css`
-  display: flex;
-  gap: 4px;
-`;
 const uppercase = css`
   text-transform: uppercase;
 `;
-
 export const styles = {
   container,
   button,

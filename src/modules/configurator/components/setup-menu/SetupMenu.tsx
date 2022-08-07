@@ -49,12 +49,12 @@ export function SetupMenu() {
             </div>
             <div css={styles.menuFooter}>
               <div css={styles.price}>
-                <p css={styles.text}>
+                <div css={styles.text}>
                   <p css={styles.uppercase}>Total</p>
-                  <span>
+                  <div>
                     <Info message={"Value calculated in euros"} />
-                  </span>
-                </p>
+                  </div>
+                </div>
                 <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
               </div>
               <button
@@ -78,12 +78,12 @@ export function SetupMenu() {
             </div>
             <div css={styles.menuFooter}>
               <div css={styles.price}>
-                <p css={styles.text}>
+                <div css={styles.text}>
                   <p css={styles.uppercase}>Total</p>
-                  <span>
+                  <div>
                     <Info message={"Value calculated in euros"} />
-                  </span>
-                </p>
+                  </div>
+                </div>
 
                 <p css={styles.number}>{`${totalPrice.toLocaleString()} €`}</p>
               </div>
