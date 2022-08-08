@@ -35,9 +35,11 @@ export function Configuration() {
   }, [model, colorExterior, wheels, colorExterior]);
   useEffect(() => {
     if (previousStep === 2 && currentStep === 3) {
+      document.title = `Configurator - Summary`;
       setIsFinalStep(true);
       return;
     }
+    document.title = `Configuration View`;
     setIsFinalStep(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep]);

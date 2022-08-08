@@ -48,6 +48,7 @@ export function Home() {
     } else {
       setIsLoading(true);
       isLoggedIn && fetchSavedCarConfigurations();
+      document.title = `Home - Car Configurator`;
     }
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps

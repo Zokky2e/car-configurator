@@ -1,77 +1,5 @@
 import { css } from "@emotion/react";
-export const item = css`
-  display: flex;
-  background-color: var(--background-7);
-  padding: 20px 0 24px;
-  margin: 28px 0;
-  @media screen and (max-width: 940px) {
-    flex-flow: wrap column-reverse;
-    max-height: 628px;
-  }
-`;
-
-export const info = css`
-  display: flex;
-  flex: 1 0;
-  justify-content: flex-start;
-  align-items: center;
-  @media screen and (max-width: 940px) {
-    flex-flow: wrap row;
-  }
-  article {
-    margin: 0 28px;
-  }
-`;
-export const picture = css`
-  padding: 0 40px;
-  width: 420px;
-  border-right: 1px solid #dbdbdb;
-  @media screen and (max-width: 940px) {
-    border-right: none;
-    width: 100%;
-    padding: 0;
-  }
-`;
-export const year = css`
-  font-family: "Inter";
-  font-style: normal;
-  margin: 0;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 2px;
-`;
-export const title = css`
-  font-family: "Optician Sans";
-  font-style: normal;
-  margin: 0;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 32px;
-  letter-spacing: -2px;
-  color: var(--primary);
-`;
-export const color = css`
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--text-2);
-  letter-spacing: 2px;
-  margin: 8px 0 32px;
-`;
-export const dateCreated = css`
-  margin: 0;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--text-4);
-`;
-
-export const uppercase = css`
-  text-transform: uppercase;
-`;
-
-export const options = css`
+export const container = css`
   display: flex;
   flex-flow: wrap column;
   @media screen and (max-width: 940px) {
@@ -86,7 +14,7 @@ export const options = css`
   float: right;
 `;
 
-export const optionsButton = css`
+export const button = css`
   align-self: flex-end;
   float: right;
   width: 32px;
@@ -110,7 +38,7 @@ export const optionsButton = css`
     transition: all 0.2s ease-in-out;
   }
 `;
-const activeOptionsMenu = css`
+const active = css`
   transition-delay: 0.2s;
 
   span:first-of-type,
@@ -135,7 +63,7 @@ const activeOptionsMenu = css`
   }
 `;
 
-export const optionsMenu = css`
+export const menu = css`
   position: relative;
   z-index: 5;
   padding: 0;
@@ -176,32 +104,12 @@ export const optionsMenu = css`
   }
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.06);
 `;
-
-export const hidden = css`
+const hidden = css`
   transition-delay: 0.2s;
   visibility: hidden;
 `;
-export const visible = css`
+const visible = css`
   transition-delay: 0.2s;
   visibility: visible;
 `;
-export const loading = css`
-  opacity: 0.1;
-`;
-export const styles = {
-  item,
-  info,
-  picture,
-  year,
-  title,
-  color,
-  dateCreated,
-  uppercase,
-  options,
-  optionsButton,
-  activeOptionsMenu,
-  optionsMenu,
-  hidden,
-  visible,
-  loading,
-};
+export const styles = { container, button, menu, active, hidden, visible };
