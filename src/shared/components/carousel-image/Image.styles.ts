@@ -22,4 +22,7 @@ const active = css`
     }
   }
 `;
-export const styles = { slide, active };
+const loading = css`
+  opacity: 0.1;
+`;
+export const styles = { slide, loading, active };

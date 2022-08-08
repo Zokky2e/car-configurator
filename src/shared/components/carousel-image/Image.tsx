@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
+import { Loading } from "../loading-component";
 import { styles } from "./Image.styles";
 
 interface ImageProps {
@@ -11,6 +12,8 @@ interface ImageProps {
 
 export function Image(props: ImageProps) {
   const [image, setImage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const storage = getStorage();
   const gsReference = ref(storage, props.image);
   function fetchImage() {
@@ -18,7 +21,11 @@ export function Image(props: ImageProps) {
       .then((url) => {
         setImage(url);
       })
+      .then(() => {
+        setIsLoading(false);
+      })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
       });
   }
@@ -35,7 +42,16 @@ export function Image(props: ImageProps) {
           : [styles.slide]
       }
     >
-      <img id={props.image} src={image} alt={props.image} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <img
+          css={[isLoading ? styles.loading : ""]}
+          id={props.image}
+          src={image}
+          alt={props.image}
+        />
+      )}
     </div>
   );
 }

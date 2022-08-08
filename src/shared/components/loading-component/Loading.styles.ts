@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 export const loading = css`
   display: block;
   position: relative;
+  padding-left: 25%;
   height: 80px;
   width: 360px;
   div {
