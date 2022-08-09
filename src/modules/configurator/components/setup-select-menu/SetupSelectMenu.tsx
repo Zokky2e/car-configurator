@@ -7,6 +7,7 @@ import { carWheel, configurationViewAtoms } from "../../../configuration-view";
 import { configuratorAtoms } from "../../states";
 import { ItemList } from "../setup-menu-item-list";
 import { styles } from "./SetupSelectMenu.styles";
+import { ReactComponent as ExitButton } from "../../../../shared/assets/Exit.svg";
 interface SelectMenuProps {
   isSelected: boolean;
 }
@@ -82,7 +83,9 @@ export function SetupSelectMenu(props: SelectMenuProps) {
     <div css={props.isSelected ? styles.container : styles.hidden}>
       <div css={styles.title}>
         <p>{selectedType}</p>
-        <button onClick={handleCancel}>X</button>
+        <button onClick={handleCancel}>
+          <ExitButton />
+        </button>
       </div>
       <div css={styles.items}>
         <ItemList images={images} items={items} selectedType={selectedType} />

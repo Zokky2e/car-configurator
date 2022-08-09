@@ -58,6 +58,16 @@ const title = css`
   }
   justify-content: space-between;
   align-items: center;
+  button {
+    display: flex;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 const menuFooter = css`
   display: flex;
