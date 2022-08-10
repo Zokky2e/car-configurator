@@ -11,4 +11,25 @@ const selectedItem = atom<item>({
   default: { image: "", name: "", price: 0 },
   dangerouslyAllowMutability: true,
 });
-export const configuratorAtoms = { selectedType, selectedItem };
+const selectedWheels = atom<string>({
+  key: "configurator.selectedWheels",
+  default: "One",
+  dangerouslyAllowMutability: true,
+});
+const selectedColor = atom<string>({
+  key: "configurator.selectedColor",
+  default: "Black",
+  dangerouslyAllowMutability: true,
+});
+const selectedColorInterier = atom<string>({
+  key: "configurator.selectedColorInterier",
+  default: "Black",
+  dangerouslyAllowMutability: true,
+});
+export const configuratorAtoms = {
+  selectedType,
+  selectedItem,
+  selectedWheels,
+  selectedColor,
+  selectedColorInterier,
+};

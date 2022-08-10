@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
+import { configuratorAtoms } from "../../../configurator";
 import { CarCardInfo } from "../../types";
 import { styles } from "./CarCard.styles";
 export function CarCard(props: CarCardInfo) {
@@ -19,9 +20,19 @@ export function CarCard(props: CarCardInfo) {
   const setIsNewConfiguration = useSetRecoilState(
     sharedAtoms.isNewConfiguration
   );
+  const setSelectedColorInterior = useSetRecoilState(
+    configuratorAtoms.selectedColorInterier
+  );
+  const setSelectedColorExterior = useSetRecoilState(
+    configuratorAtoms.selectedColor
+  );
+  const setSelectedWheels = useSetRecoilState(configuratorAtoms.selectedWheels);
   const setCurrentStep = useSetRecoilState(sharedAtoms.currentStep);
   const setPreviousStep = useSetRecoilState(sharedAtoms.previousStep);
   function handleRedirect() {
+    setSelectedColorInterior(props.colorInterior);
+    setSelectedColorExterior(props.colorExterior);
+    setSelectedWheels("One");
     setCurrentStep(3);
     setPreviousStep(2);
     resetId();

@@ -22,6 +22,7 @@ root.render(
           --border-4: #9d9daf;
           --border-5: #c7c7d1;
           --icon-6: #f1f1f4;
+          --icon-7: #fcfcfd;
           --basic-white: #ffffff;
           --primary-1: #3f3fe4;
           --primary-3: #9898f0;
@@ -34,6 +35,7 @@ root.render(
           --text-7: #fcfcfd;
           --error: #d2341e;
           --success-1: #6ceab5;
+          --success: #1ed286;
           --error-1: #ea7b6c;
           --modal-shadow: rgba(0, 0, 0, 0.06);
         }
