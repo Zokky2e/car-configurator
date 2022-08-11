@@ -2,12 +2,15 @@
 
 import { useRecoilValue } from "recoil";
 import { Info } from "../../../../shared";
-import { configurationViewAtoms } from "../../states";
+import {
+  configurationViewAtoms,
+  configurationViewSelectors,
+} from "../../states";
 import { styles } from "./ConfigurationInfo.styles";
 export function ConfigurationInfo() {
   const name = useRecoilValue(configurationViewAtoms.name);
   const year = useRecoilValue(configurationViewAtoms.year);
-  const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
+  const totalPrice = useRecoilValue(configurationViewSelectors.totalPrice);
 
   return (
     <section css={styles.container}>

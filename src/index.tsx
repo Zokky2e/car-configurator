@@ -40,7 +40,7 @@ root.render(
           --modal-shadow: rgba(0, 0, 0, 0.06);
         }
         body {
-          margin: 0;
+          margin: 0 auto;
           min-width: 100%;
           font-family: "Inter";
           color: var(--nav-bg);

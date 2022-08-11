@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 
 export const container = css`
   position: relative;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +10,7 @@ export const container = css`
   height: 80px;
   background-color: var(--nav-bg);
   color: var(--nav-text);
-  padding: 0 40px;
+  padding: 0 52px 0 40px;
   button {
     cursor: pointer;
   }
@@ -19,7 +20,6 @@ export const navigation = css`
   justify-content: space-between;
   align-items: center;
   gap: 40px;
-  padding: 0;
   flex-flow: wrap row;
   list-style-type: none;
 `;

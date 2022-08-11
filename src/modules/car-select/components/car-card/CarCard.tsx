@@ -10,8 +10,12 @@ export function CarCard(props: CarCardInfo) {
   const navigate = useNavigate();
   const setName = useSetRecoilState(configurationViewAtoms.name);
   const resetId = useResetRecoilState(configurationViewAtoms.id);
+  const setWheels = useSetRecoilState(configurationViewAtoms.wheels);
   const setExteriorColor = useSetRecoilState(
     configurationViewAtoms.colorExterior
+  );
+  const setExteriorPrice = useSetRecoilState(
+    configurationViewAtoms.colorExteriorPrice
   );
   const setInteriorColor = useSetRecoilState(
     configurationViewAtoms.colorInterior
@@ -21,15 +25,23 @@ export function CarCard(props: CarCardInfo) {
     sharedAtoms.isNewConfiguration
   );
   const setSelectedColorInterior = useSetRecoilState(
-    configuratorAtoms.selectedColorInterier
+    configuratorAtoms.selectedColorInterior
   );
   const setSelectedColorExterior = useSetRecoilState(
     configuratorAtoms.selectedColor
   );
   const setSelectedWheels = useSetRecoilState(configuratorAtoms.selectedWheels);
+  const setModelPrice = useSetRecoilState(configurationViewAtoms.modelPrice);
   const setCurrentStep = useSetRecoilState(sharedAtoms.currentStep);
   const setPreviousStep = useSetRecoilState(sharedAtoms.previousStep);
   function handleRedirect() {
+    if (props.docName === "rs6") setModelPrice(117595);
+    else if (props.docName === "rs5") setModelPrice(75195);
+    else {
+      setModelPrice(65900);
+    }
+
+    setExteriorPrice(0);
     setSelectedColorInterior(props.colorInterior);
     setSelectedColorExterior(props.colorExterior);
     setSelectedWheels("One");
@@ -41,6 +53,7 @@ export function CarCard(props: CarCardInfo) {
     setExteriorColor(props.colorExterior);
     setInteriorColor(props.colorInterior);
     setIsNewConfiguration(true);
+    setWheels("One");
     setTimeout(() => {
       navigate({
         pathname: "/configuration",

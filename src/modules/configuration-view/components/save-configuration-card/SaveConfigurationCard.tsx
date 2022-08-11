@@ -6,14 +6,17 @@ import { useRecoilValue } from "recoil";
 import { db } from "../../../../firebase";
 import { Info, sharedAtoms } from "../../../../shared";
 import { CarInfo } from "../../../home";
-import { configurationViewAtoms } from "../../states";
+import {
+  configurationViewAtoms,
+  configurationViewSelectors,
+} from "../../states";
 import { styles } from "./SaveConfigurationCard.styles";
 
 export function SaveConfigurationCard() {
   const navigate = useNavigate();
   const name = useRecoilValue(configurationViewAtoms.name);
   const year = useRecoilValue(configurationViewAtoms.year);
-  const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
+  const totalPrice = useRecoilValue(configurationViewSelectors.totalPrice);
   const color = useRecoilValue(configurationViewAtoms.colorExterior);
   const colorInterior = useRecoilValue(configurationViewAtoms.colorInterior);
   const model = useRecoilValue(configurationViewAtoms.model);

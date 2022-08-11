@@ -9,14 +9,15 @@ import { Image } from "../carousel-image";
 import { styles } from "./Carousel.styles";
 import { ReactComponent as ArrowLeft } from "../../assets/Arrow-left.svg";
 import { ReactComponent as ArrowRight } from "../../assets/Arrow-right.svg";
+import { configuratorAtoms } from "../../../modules/configurator";
 export function Carousel() {
   const [slideIndex, setSlideIndex] = useState<number>(1);
   const model = useRecoilValue(configurationViewAtoms.model);
-  const color = useRecoilValue(configurationViewAtoms.colorExterior);
-  const colorInterior = useRecoilValue(configurationViewAtoms.colorInterior);
+  const color = useRecoilValue(configuratorAtoms.selectedColor);
+  const colorInterior = useRecoilValue(configuratorAtoms.selectedColorInterior);
   const currentStep = useRecoilValue(sharedAtoms.currentStep);
   const isInterior = currentStep === 2 ? true : false;
-  const wheels = useRecoilValue(configurationViewAtoms.wheels);
+  const wheels = useRecoilValue(configuratorAtoms.selectedWheels);
   const [imageUrl, setImageUrl] = useState<string[]>([]);
   function getImageExteriorUrl(
     model: carModel,
@@ -41,7 +42,7 @@ export function Carousel() {
       setImageUrl(getImageInteriorUrl(model, colorInterior));
       return;
     }
-    setImageUrl(getImageExteriorUrl(model, color, wheels));
+    setImageUrl(getImageExteriorUrl(model, color, wheels as carWheel));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInterior, wheels, color, colorInterior]);
 

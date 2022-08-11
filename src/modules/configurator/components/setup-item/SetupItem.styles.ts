@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 const container = css`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -29,6 +30,20 @@ const text = css`
     text-transform: uppercase;
   }
 `;
+const image = css`
+  display: flex;
+`;
+const successIcon = css`
+  position: absolute;
+  left: 42px;
+  top: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 24px;
+  padding: 4px;
+  color: var(--icon-7);
+  background-color: var(--success);
+`;
 const noBorderRadius = css`
   height: 60px;
   border-radius: 0;
@@ -37,4 +52,11 @@ const borderRadius = css`
   height: 60px;
   border-radius: 60px;
 `;
-export const styles = { container, text, borderRadius, noBorderRadius };
+export const styles = {
+  container,
+  text,
+  image,
+  borderRadius,
+  noBorderRadius,
+  successIcon,
+};

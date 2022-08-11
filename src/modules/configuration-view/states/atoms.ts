@@ -5,6 +5,11 @@ const model = atom<carModel>({
   default: "rs6",
   dangerouslyAllowMutability: true,
 });
+const modelPrice = atom<number>({
+  key: "configurationView.modelPrice",
+  default: 117595,
+  dangerouslyAllowMutability: true,
+});
 const id = atom<string>({
   key: "configurationView.id",
   default: "new",
@@ -18,11 +23,6 @@ const name = atom<string>({
 const year = atom<string>({
   key: "configurationView.year",
   default: "2022",
-  dangerouslyAllowMutability: true,
-});
-const totalPrice = atom<number>({
-  key: "configurationView.price",
-  default: 120000.12,
   dangerouslyAllowMutability: true,
 });
 const wheels = atom<carWheel>({
@@ -74,7 +74,7 @@ export const configurationViewAtoms = {
   name,
   id,
   model,
-  totalPrice,
+  modelPrice,
   wheels,
   wheelsPrice,
   wheelsPicture,

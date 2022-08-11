@@ -3,7 +3,10 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Carousel, Info, sharedAtoms } from "../../../../shared";
-import { configurationViewAtoms } from "../../../configuration-view";
+import {
+  configurationViewAtoms,
+  configurationViewSelectors,
+} from "../../../configuration-view";
 import { SetupItem } from "../setup-item";
 import { SetupSelectMenu } from "../setup-select-menu";
 import { styles } from "./SetupMenu.styles";
@@ -14,7 +17,7 @@ export function SetupMenu() {
   const setPreviousStep = useSetRecoilState(sharedAtoms.previousStep);
   const isSelectedMenu = useRecoilValue(sharedAtoms.isSelectMenuOpen);
   const isExterior = currentStep === 1 ? true : false;
-  const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
+  const totalPrice = useRecoilValue(configurationViewSelectors.totalPrice);
   const exteriorColor = useRecoilValue(configurationViewAtoms.colorExterior);
   const exteriorColorPicture = useRecoilValue(
     configurationViewAtoms.colorExteriorPicture

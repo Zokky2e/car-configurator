@@ -15,7 +15,7 @@ interface ItemProps {
 
 export function SetupSelectItem(props: ItemProps) {
   const selectedColorInterior = useRecoilValue(
-    configuratorAtoms.selectedColorInterier
+    configuratorAtoms.selectedColorInterior
   );
   const selectedColorExterior = useRecoilValue(configuratorAtoms.selectedColor);
   const selectedWheels = useRecoilValue(configuratorAtoms.selectedWheels);
@@ -37,6 +37,9 @@ export function SetupSelectItem(props: ItemProps) {
       selectedWheels === name
     )
       setIsSelected(true);
+    else {
+      setIsSelected(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedColorInterior, selectedColorExterior, selectedWheels]);
   return (

@@ -3,7 +3,11 @@ import { getStorage, listAll, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { sharedAtoms } from "../../../../shared";
-import { carWheel, configurationViewAtoms } from "../../../configuration-view";
+import {
+  carWheel,
+  configurationViewAtoms,
+  configurationViewSelectors,
+} from "../../../configuration-view";
 import { configuratorAtoms } from "../../states";
 import { ItemList } from "../setup-menu-item-list";
 import { styles } from "./SetupSelectMenu.styles";
@@ -12,13 +16,24 @@ interface SelectMenuProps {
   isSelected: boolean;
 }
 export function SetupSelectMenu(props: SelectMenuProps) {
+  const wheels = useRecoilValue(configurationViewAtoms.wheels);
+  const exteriorColor = useRecoilValue(configurationViewAtoms.colorExterior);
+  const interiorColor = useRecoilValue(configurationViewAtoms.colorInterior);
+
   const selectedItem = useRecoilValue(configuratorAtoms.selectedItem);
   const selectedType = useRecoilValue(configuratorAtoms.selectedType);
-  const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
+  const totalPrice = useRecoilValue(configurationViewSelectors.totalPrice);
   const model = useRecoilValue(configurationViewAtoms.model);
   const [items, setItems] = useState<string[]>([]);
   const [images, setImages] = useState<string[]>([]);
   let type: string;
+  const setSelectedColorInterior = useSetRecoilState(
+    configuratorAtoms.selectedColorInterior
+  );
+  const setSelectedColorExterior = useSetRecoilState(
+    configuratorAtoms.selectedColor
+  );
+  const setSelectedWheels = useSetRecoilState(configuratorAtoms.selectedWheels);
   const setIsSelectedType = useSetRecoilState(sharedAtoms.isSelectMenuOpen);
   const resetSelectedType = useResetRecoilState(configuratorAtoms.selectedType);
   const setWheels = useSetRecoilState(configurationViewAtoms.wheels);
@@ -42,10 +57,13 @@ export function SetupSelectMenu(props: SelectMenuProps) {
     if (selectedType === "Wheels") {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       type = `${model}-wheel`;
+      setSelectedWheels(wheels);
     } else if (selectedType === "Paint Color") {
       type = `exterior-color`;
+      setSelectedColorExterior(exteriorColor);
     } else {
       type = `interior-color`;
+      setSelectedColorInterior(interiorColor);
     }
     const storage = getStorage();
     const itemsRef = ref(storage, type);
@@ -76,20 +94,30 @@ export function SetupSelectMenu(props: SelectMenuProps) {
     setIsSelectedType(false);
   }
   function handleCancel() {
+    if (selectedType === "Wheels") {
+      setSelectedWheels(wheels);
+    } else if (selectedType === "Paint Color") {
+      setSelectedColorExterior(exteriorColor);
+    } else {
+      setSelectedColorInterior(interiorColor);
+    }
     resetSelectedType();
     setIsSelectedType(false);
   }
   return (
     <div css={props.isSelected ? styles.container : styles.hidden}>
-      <div css={styles.title}>
-        <p>{selectedType}</p>
-        <button onClick={handleCancel}>
-          <ExitButton />
-        </button>
+      <div>
+        <div css={styles.title}>
+          <p>{selectedType}</p>
+          <button onClick={handleCancel}>
+            <ExitButton />
+          </button>
+        </div>
+        <div css={styles.items}>
+          <ItemList images={images} items={items} selectedType={selectedType} />
+        </div>
       </div>
-      <div css={styles.items}>
-        <ItemList images={images} items={items} selectedType={selectedType} />
-      </div>
+
       <div css={styles.menuFooter}>
         <div css={styles.price}>
           <p css={styles.text}>Total</p>

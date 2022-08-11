@@ -7,6 +7,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { db } from "../../../../firebase";
 import { sharedAtoms } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
+import { configuratorAtoms } from "../../../configurator";
 import { signInAtoms } from "../../../sign-in";
 import { CarInfo } from "../../types";
 import { styles } from "./CarOptionMenu.styles";
@@ -33,7 +34,21 @@ export function CarOptionMenu(props: CarInfo) {
   const setErrorMessage = useSetRecoilState(signInAtoms.errorMessage);
   const setIsSuccess = useSetRecoilState(signInAtoms.isSuccess);
   const setSuccessMessage = useSetRecoilState(signInAtoms.successMessage);
+  const setSelectedColorInterior = useSetRecoilState(
+    configuratorAtoms.selectedColorInterior
+  );
+  const setSelectedColorExterior = useSetRecoilState(
+    configuratorAtoms.selectedColor
+  );
+  const setSelectedWheels = useSetRecoilState(configuratorAtoms.selectedWheels);
+  const setModelPrice = useSetRecoilState(configurationViewAtoms.modelPrice);
+
   function handleEditConfiguration() {
+    if (props.model === "rs6") setModelPrice(117595);
+    else if (props.model === "rs5") setModelPrice(75195);
+    else {
+      setModelPrice(65900);
+    }
     setCurrentStep(3);
     setPreviousStep(1);
     setIsNewConfiguration(false);
@@ -42,6 +57,9 @@ export function CarOptionMenu(props: CarInfo) {
     setName(props.name);
     setExteriorColor(props.color);
     setInteriorColor(props.colorInterior);
+    setSelectedColorExterior(props.color);
+    setSelectedColorInterior(props.colorInterior);
+    setSelectedWheels(props.wheels);
     setTimeout(() => {
       navigate({
         pathname: "/configuration",

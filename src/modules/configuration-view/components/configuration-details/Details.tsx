@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { sharedAtoms } from "../../../../shared";
 import { configuratorAtoms } from "../../../configurator";
-import { configurationViewAtoms } from "../../states";
+import {
+  configurationViewAtoms,
+  configurationViewSelectors,
+} from "../../states";
 import { DescriptionCard } from "../description-card/DescriptionCard";
 import { styles } from "./Details.styles";
 
@@ -32,13 +35,13 @@ export function Details() {
     configurationViewAtoms.colorInteriorPrice
   );
   const setSelectedColorInterior = useSetRecoilState(
-    configuratorAtoms.selectedColorInterier
+    configuratorAtoms.selectedColorInterior
   );
   const setSelectedColorExterior = useSetRecoilState(
     configuratorAtoms.selectedColor
   );
   const setSelectedWheels = useSetRecoilState(configuratorAtoms.selectedWheels);
-  const totalPrice = useRecoilValue(configurationViewAtoms.totalPrice);
+  const totalPrice = useRecoilValue(configurationViewSelectors.totalPrice);
 
   function handleEdit(step: number) {
     setSelectedColorInterior(colorInterior);

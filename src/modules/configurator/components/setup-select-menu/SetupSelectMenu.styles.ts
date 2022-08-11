@@ -7,6 +7,7 @@ const container = css`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+  height: 100%;
   z-index: 5;
   top: -80px;
 
@@ -61,12 +62,13 @@ const title = css`
   button {
     display: flex;
     padding: 0;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     border: none;
     background-color: transparent;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 `;
 const menuFooter = css`

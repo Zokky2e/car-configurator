@@ -21,8 +21,8 @@ const selectedColor = atom<string>({
   default: "Black",
   dangerouslyAllowMutability: true,
 });
-const selectedColorInterier = atom<string>({
-  key: "configurator.selectedColorInterier",
+const selectedColorInterior = atom<string>({
+  key: "configurator.selectedColorInterior",
   default: "Black",
   dangerouslyAllowMutability: true,
 });
@@ -31,5 +31,5 @@ export const configuratorAtoms = {
   selectedItem,
   selectedWheels,
   selectedColor,
-  selectedColorInterier,
+  selectedColorInterior,
 };

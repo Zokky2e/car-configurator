@@ -33,10 +33,10 @@ const image = css`
 `;
 const successIcon = css`
   position: absolute;
-  left: 32px;
-  top: 20px;
-  width: 20px;
-  height: 20px;
+  left: 36px;
+  top: 24px;
+  width: 16px;
+  height: 16px;
   border-radius: 24px;
   padding: 4px;
   color: var(--icon-7);
