@@ -8,6 +8,9 @@ const container = css`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--border-5);
+  @media screen and (max-width: 500px) {
+    padding: 0 20px;
+  }
 `;
 const backButton = css`
   border: none;
@@ -21,6 +24,16 @@ const content = css`
   display: flex;
   justify-content: flex-start;
   gap: 12px;
+  @media screen and (max-width: 600px) {
+    p {
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    p {
+      font-size: 12px;
+    }
+  }
 `;
 const subText = css`
   font-family: "Optician Sans";

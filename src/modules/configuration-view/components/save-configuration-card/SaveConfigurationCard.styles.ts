@@ -4,6 +4,7 @@ const container = css`
   display: flex;
   justify-content: space-between;
   @media screen and (max-width: 800px) {
+    padding: 0;
     flex-flow: column nowrap;
     align-items: center;
     max-height: none;

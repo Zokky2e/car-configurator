@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /** @jsxImportSource @emotion/react */
 
 import { useNavigate } from "react-router-dom";
@@ -11,9 +12,11 @@ import { configurationViewAtoms } from "../../../modules/configuration-view/stat
 import { sharedAtoms } from "../../states";
 import { styles } from "./Options.styles";
 import { ReactComponent as ArrowLeft } from "../../assets/Arrow-left.svg";
+import { useEffect, useState } from "react";
 
 export function Options() {
   const navigate = useNavigate();
+  const [screenWidth, setScreenWidth] = useState<number>(screen.width);
   const [currentStep, setCurrentStep] = useRecoilState(sharedAtoms.currentStep);
   const previousStep = useRecoilValue(sharedAtoms.previousStep);
   const name = useRecoilValue(configurationViewAtoms.name);
@@ -38,6 +41,17 @@ export function Options() {
     }
     navigate(-1);
   }
+  useEffect(() => {
+    function handleWindowResize() {
+      setScreenWidth(screen.width);
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
   return (
     <header css={styles.container}>
       <div css={styles.content}>
@@ -54,7 +68,9 @@ export function Options() {
       </div>
       {isNewConfiguration ? (
         <div css={styles.buttons}>
-          <button onClick={handleEditConfiguration}>Edit configuration</button>
+          <button onClick={handleEditConfiguration}>
+            {screenWidth <= 500 ? "Edit" : "Edit configuration"}
+          </button>
           <button
             onClick={() => {
               handleGoBack();
