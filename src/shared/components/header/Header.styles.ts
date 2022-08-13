@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const container = css`
+const container = css`
   position: relative;
   margin: 0 auto;
   display: flex;
@@ -15,7 +15,7 @@ export const container = css`
     cursor: pointer;
   }
 `;
-export const navigation = css`
+const navigation = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,7 +23,7 @@ export const navigation = css`
   flex-flow: wrap row;
   list-style-type: none;
 `;
-export const hamburger = css`
+const hamburger = css`
   span {
     display: block;
     border-radius: 9999px;
@@ -41,7 +41,7 @@ export const hamburger = css`
   border: none;
   background-color: transparent;
 `;
-export const activeMenu = css`
+const activeMenu = css`
   transition-delay: 0.2s;
 
   span:first-of-type,
@@ -57,7 +57,7 @@ export const activeMenu = css`
     transform: translateX(0px) translateY(-4px) rotate(-45deg);
   }
 `;
-export const configureButton = css`
+const configureButton = css`
   color: var(--nav-text);
   width: 120px;
   padding: 0;
@@ -66,7 +66,7 @@ export const configureButton = css`
   background-color: transparent;
 `;
 
-export const mainMenu = css`
+const mainMenu = css`
   position: absolute;
   z-index: 5;
   padding: 0;
@@ -92,11 +92,11 @@ export const mainMenu = css`
     border-bottom: 1px solid var(--background);
   }
 `;
-export const hidden = css`
+const hidden = css`
   transition-delay: 0.2s;
   visibility: hidden;
 `;
-export const visible = css`
+const visible = css`
   transition-delay: 0.2s;
   visibility: visible;
 `;

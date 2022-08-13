@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const carList = css`
+const carList = css`
   display: flex;
   flex-flow: nowrap row;
   justify-content: space-between;
@@ -22,7 +22,7 @@ export const carList = css`
     display: none;
   }
 `;
-export const title = css`
+const title = css`
   max-width: 1128px;
   font-weight: 400;
   font-size: 28px;
@@ -31,7 +31,7 @@ export const title = css`
   padding: 0 16px;
   color: var(--text-1);
 `;
-export const description = css`
+const description = css`
   max-width: 1128px;
   font-weight: 400;
   font-size: 14px;

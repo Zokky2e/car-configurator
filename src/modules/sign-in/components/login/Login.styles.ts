@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 
-export const container = css`
+const container = css`
   display: flex;
   align-items: center;
   flex-direction: column;
 `;
-export const title = css`
+const title = css`
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
@@ -16,13 +16,13 @@ export const title = css`
   margin-bottom: 16px;
 `;
 
-export const form = css`
+const form = css`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
-export const formElement = css`
+const formElement = css`
   display: grid;
   gap: 8px;
   font-weight: 400;
@@ -42,7 +42,7 @@ export const formElement = css`
     margin-bottom: 16px;
   }
 `;
-export const buttons = css`
+const buttons = css`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,12 +58,12 @@ export const buttons = css`
     border: none;
   }
 `;
-export const clickable = css`
+const clickable = css`
   cursor: pointer;
   background-color: var(--primary);
   color: var(--icon-6);
 `;
-export const notClickable = css`
+const notClickable = css`
   cursor: not-allowed;
   background-color: var(--primary);
   opacity: 0.5;
@@ -79,7 +79,7 @@ const google = css`
     width: 44px;
   }
 `;
-export const eye = css`
+const eye = css`
   position: relative;
   top: -28px;
   left: 156px;
@@ -88,16 +88,16 @@ export const eye = css`
   width: 16px;
   cursor: pointer;
 `;
-export const recovery = css`
+const recovery = css`
   cursor: pointer;
   text-decoration: none;
   font-weight: 700;
   color: var(--primary);
 `;
-export const hidden = css`
+const hidden = css`
   visibility: hidden;
 `;
-export const visible = css`
+const visible = css`
   visibility: visible;
 `;
 export const styles = {

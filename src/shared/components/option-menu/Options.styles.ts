@@ -95,10 +95,10 @@ const steps = css`
 const currentStep = css`
   font-weight: 700 !important;
 `;
-export const hidden = css`
+const hidden = css`
   visibility: hidden;
 `;
-export const visible = css`
+const visible = css`
   visibility: visible;
 `;
 export const styles = {

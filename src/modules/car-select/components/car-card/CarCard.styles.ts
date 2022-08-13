@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const card = css`
+const card = css`
   min-width: 468px;
   list-style-type: none;
   background-color: var(--background-7);
@@ -21,14 +21,14 @@ export const card = css`
     text-transform: uppercase;
   }
 `;
-export const image = css`
+const image = css`
   width: 1204px;
   height: 388px;
   position: relative;
   left: -560px;
   top: -28px;
 `;
-export const year = css`
+const year = css`
   font-family: "Optician Sans";
   font-style: normal;
 
@@ -39,7 +39,7 @@ export const year = css`
   color: var(--text-3);
   margin: 40px 0 0;
 `;
-export const name = css`
+const name = css`
   font-family: "Optician Sans";
   font-style: normal;
   font-size: 48px;
@@ -49,7 +49,7 @@ export const name = css`
   color: var(--text-1);
   margin-bottom: 16px !important;
 `;
-export const button = css`
+const button = css`
   width: 180px;
   height: 44px;
   padding: 12px 40px;

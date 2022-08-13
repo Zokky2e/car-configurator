@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-export const item = css`
+const item = css`
   display: flex;
   background-color: var(--background-7);
   padding: 20px 0 24px;
@@ -10,7 +10,7 @@ export const item = css`
   }
 `;
 
-export const info = css`
+const info = css`
   display: flex;
   flex: 1 0;
   justify-content: flex-start;
@@ -22,7 +22,7 @@ export const info = css`
     margin: 0 28px;
   }
 `;
-export const picture = css`
+const picture = css`
   padding: 0 40px;
   width: 420px;
   border-right: 1px solid #dbdbdb;
@@ -32,7 +32,7 @@ export const picture = css`
     padding: 0;
   }
 `;
-export const year = css`
+const year = css`
   font-family: "Inter";
   font-style: normal;
   margin: 0;
@@ -41,7 +41,7 @@ export const year = css`
   line-height: 16px;
   letter-spacing: 2px;
 `;
-export const title = css`
+const title = css`
   font-family: "Optician Sans";
   font-style: normal;
   margin: 0;
@@ -51,7 +51,7 @@ export const title = css`
   letter-spacing: -2px;
   color: var(--primary);
 `;
-export const color = css`
+const color = css`
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -59,7 +59,7 @@ export const color = css`
   letter-spacing: 2px;
   margin: 8px 0 32px;
 `;
-export const dateCreated = css`
+const dateCreated = css`
   margin: 0;
   font-weight: 400;
   font-size: 12px;
@@ -67,11 +67,11 @@ export const dateCreated = css`
   color: var(--text-4);
 `;
 
-export const uppercase = css`
+const uppercase = css`
   text-transform: uppercase;
 `;
 
-export const options = css`
+const options = css`
   display: flex;
   flex-flow: wrap column;
   @media screen and (max-width: 940px) {
@@ -86,7 +86,7 @@ export const options = css`
   float: right;
 `;
 
-export const optionsButton = css`
+const optionsButton = css`
   align-self: flex-end;
   float: right;
   width: 32px;
@@ -135,7 +135,7 @@ const activeOptionsMenu = css`
   }
 `;
 
-export const optionsMenu = css`
+const optionsMenu = css`
   position: relative;
   z-index: 5;
   padding: 0;
@@ -177,15 +177,15 @@ export const optionsMenu = css`
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.06);
 `;
 
-export const hidden = css`
+const hidden = css`
   transition-delay: 0.2s;
   visibility: hidden;
 `;
-export const visible = css`
+const visible = css`
   transition-delay: 0.2s;
   visibility: visible;
 `;
-export const loading = css`
+const loading = css`
   opacity: 0.1;
 `;
 export const styles = {

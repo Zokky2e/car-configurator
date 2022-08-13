@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const container = css`
+const container = css`
   max-width: 1128px;
   display: flex;
   justify-content: space-between;
@@ -27,10 +27,10 @@ export const container = css`
     cursor: pointer;
   }
 `;
-export const hidden = css`
+const hidden = css`
   visibility: hidden;
 `;
-export const visible = css`
+const visible = css`
   visibility: visible;
 `;
 

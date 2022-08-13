@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-export const container = css`
+const container = css`
   display: flex;
   flex-flow: wrap column;
   @media screen and (max-width: 940px) {
@@ -14,7 +14,7 @@ export const container = css`
   float: right;
 `;
 
-export const button = css`
+const button = css`
   align-self: flex-end;
   float: right;
   width: 32px;
@@ -63,7 +63,7 @@ const active = css`
   }
 `;
 
-export const menu = css`
+const menu = css`
   position: relative;
   z-index: 5;
   padding: 0;
