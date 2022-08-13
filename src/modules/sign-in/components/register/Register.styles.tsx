@@ -49,10 +49,12 @@ export const formElement = css`
 export const buttons = css`
   margin: 0 auto;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  align-items: center;
   gap: 4px;
   button {
     height: 44px;
+    width: 100%;
     padding: 12px 20px;
     display: flex;
     justify-content: center;
@@ -70,6 +72,16 @@ export const notClickable = css`
   background-color: var(--primary);
   opacity: 0.5;
   color: var(--icon-6);
+`;
+const google = css`
+  display: flex;
+  padding: 0 !important;
+  padding-right: 16px !important;
+  justify-content: space-between;
+  gap: 16px;
+  img {
+    width: 44px;
+  }
 `;
 export const eye = css`
   position: relative;
@@ -96,5 +108,6 @@ export const styles = {
   buttons,
   clickable,
   notClickable,
+  google,
   eye,
 };

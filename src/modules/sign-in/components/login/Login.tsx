@@ -5,6 +5,7 @@ import { ErrorPopup, SuccessPopup, useAuth } from "../../../../shared";
 import { signInAtoms } from "../../states";
 import { RecoveryPopup } from "../recovery-popup";
 import { styles } from "./Login.styles";
+import googleLogo from "../../assets/g-logo.png";
 export function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -24,6 +25,7 @@ export function Login() {
     e.preventDefault();
     if (email === "" || password === "") return;
     userAuth.handleLogin(e, email, password);
+    setPassword("");
   }
   function handleGoogle(e: React.FormEvent) {
     e.preventDefault();
@@ -91,8 +93,12 @@ export function Login() {
           >
             Login
           </button>
-          <button onClick={handleGoogle} css={styles.clickable}>
-            Google
+          <p>OR</p>
+          <button
+            css={[styles.google, styles.clickable]}
+            onClick={handleGoogle}
+          >
+            <img src={googleLogo} alt="google" /> <p>Continue with Google</p>
           </button>
         </div>
       </form>
@@ -104,7 +110,13 @@ export function Login() {
       >
         Forgot password?
       </article>
-      <div css={[isError || isSuccess ? styles.visible : styles.hidden]}>
+      <div
+        css={[
+          (isError || isSuccess) && !isPasswordRecoveryPopup
+            ? styles.visible
+            : styles.hidden,
+        ]}
+      >
         {isError ? <ErrorPopup /> : <SuccessPopup />}
       </div>
     </section>

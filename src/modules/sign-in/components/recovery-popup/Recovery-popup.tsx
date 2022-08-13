@@ -32,7 +32,6 @@ export function RecoveryPopup(props: RecoveryPopupProps) {
   function handleSend() {
     user.handlePasswordRecovery(email);
     setEmail("");
-    props.setTrigger(false);
   }
   function handleClose() {
     setEmail("");
@@ -57,7 +56,7 @@ export function RecoveryPopup(props: RecoveryPopupProps) {
           placeholder="Enter email"
           required
         />{" "}
-        <div css={isError ? styles.visible : styles.hidden}>
+        <div css={props.trigger && isError ? styles.visible : styles.hidden}>
           <ErrorPopup />
         </div>
         <div>

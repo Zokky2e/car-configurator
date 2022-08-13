@@ -4,6 +4,8 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { ErrorPopup, useAuth } from "../../../../shared";
 import { signInAtoms } from "../../states";
 import { styles } from "./Register.styles";
+import googleLogo from "../../assets/g-logo.png";
+
 export function Register() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -31,6 +33,7 @@ export function Register() {
       return;
     }
     userAuth.handleRegister(e, email, password);
+    setPassword("");
   }
   function handleGoogle(e: React.FormEvent) {
     e.preventDefault();
@@ -116,10 +119,15 @@ export function Register() {
           >
             Register
           </button>
-          <button onClick={handleGoogle} css={styles.clickable}>
-            Google
+          <p>OR</p>
+          <button
+            css={[styles.google, styles.clickable]}
+            onClick={handleGoogle}
+          >
+            <img src={googleLogo} alt="google" /> <p>Continue with Google</p>
           </button>
         </div>
+
         <div css={[isError ? styles.visible : styles.hidden]}>
           <ErrorPopup />
         </div>

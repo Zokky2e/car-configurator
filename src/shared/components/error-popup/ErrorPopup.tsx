@@ -29,7 +29,7 @@ export function ErrorPopup() {
     <div css={styles.container}>
       <div css={styles.content}>
         <img src={warning} alt="warning" />
-        <p>Success</p>
+        <p>Error</p>
         <p>{message}</p>
       </div>
       <div>

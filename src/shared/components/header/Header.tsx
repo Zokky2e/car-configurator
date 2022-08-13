@@ -32,11 +32,11 @@ export function Header() {
     };
   });
   function handleGoToHome() {
-    setIsMainMenu(!isMainMenu);
+    setIsMainMenu(false);
     isLoggedIn && navigate("/", { replace: true });
   }
   function handleLogout() {
-    setIsMainMenu(!isMainMenu);
+    setIsMainMenu(false);
     resetIsLoggedIn();
     resetUser();
     user.handleLogout();
@@ -44,7 +44,11 @@ export function Header() {
   return (
     <>
       <header css={styles.container}>
-        <div>
+        <div
+          onClick={() => {
+            handleGoToHome();
+          }}
+        >
           <img src={require("../../assets/logo192.png")} alt="logo" />
         </div>
         <ul css={styles.navigation}>
