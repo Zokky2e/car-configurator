@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 const container = css`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 `;
 const title = css`
@@ -12,7 +13,7 @@ const title = css`
   margin: 80px auto 0;
   font-style: normal;
   color: var(--text-1);
-  max-width: 420px;
+  max-width: 390px;
   margin-bottom: 16px;
 `;
 
@@ -33,7 +34,7 @@ const formElement = css`
     max-width: 328px;
     border: none;
     background-color: transparent;
-    border-bottom: 1px solid var(--border-5);
+    border-bottom: 1px solid var(--border-4);
     :focus {
       outline: none;
     }

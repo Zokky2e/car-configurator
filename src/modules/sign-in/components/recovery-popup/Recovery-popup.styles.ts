@@ -4,7 +4,7 @@ const container = css`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: var(--background-6);
   z-index: 5;
   display: flex;

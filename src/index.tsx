@@ -18,9 +18,11 @@ root.render(
           --nav-text: #f1f1f4;
           --nav-button-border: #505062;
           --background: #f1f1f4;
+          --background-6: #c7c7d170;
           --background-7: #fcfcfd;
           --border-4: #9d9daf;
           --border-5: #c7c7d1;
+
           --icon-6: #f1f1f4;
           --icon-7: #fcfcfd;
           --basic-white: #ffffff;
