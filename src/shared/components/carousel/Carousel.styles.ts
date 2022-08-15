@@ -16,17 +16,26 @@ const image = css`
   position: relative;
 `;
 const slider = css`
+  margin: 40px 0 0;
   display: flex;
   color: var(--text-5);
-  gap: 10px;
   button {
+    padding: 0 16px;
+    box-sizing: border-box;
+    align-items: center;
     border: none;
     cursor: pointer;
   }
+  p {
+    margin: 0;
+  }
 `;
-const firstLetter = css`
+const numbers = css`
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
   :first-letter {
     color: var(--text-1);
   }
 `;
-export const styles = { container, image, slider, firstLetter };
+export const styles = { container, image, slider, numbers };

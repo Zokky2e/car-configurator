@@ -1,6 +1,6 @@
 import { carModel, carWheel } from "../types";
 
-export function useStorageImage(
+export function useStorageImages(
   model: carModel,
   color: string,
   wheels: carWheel,

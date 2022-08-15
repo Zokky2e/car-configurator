@@ -3,6 +3,9 @@ const tooltip = css`
   position: relative;
   top: 2px;
   margin: 0 !important;
+  :hover {
+    cursor: help;
+  }
   [title]:before {
     position: absolute;
     opacity: 0;

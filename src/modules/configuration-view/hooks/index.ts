@@ -1,1 +1,1 @@
-export * from "./useStorageImage";
+export * from "./useStorageImages";

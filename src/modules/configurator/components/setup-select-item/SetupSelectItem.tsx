@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { typeSelect } from "../../types";
 import { styles } from "./SetupSelectItem.styles";
 import { ReactComponent as Success } from "../../../../shared/assets/Success.svg";
 import { useRecoilValue } from "recoil";
 import { configuratorAtoms } from "../../states";
 import { useEffect, useState } from "react";
+import { useStorageImage } from "../../../../shared";
 interface ItemProps {
   image: string;
   name: string;
@@ -21,15 +22,13 @@ export function SetupSelectItem(props: ItemProps) {
   const selectedWheels = useRecoilValue(configuratorAtoms.selectedWheels);
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const storage = getStorage();
-  const gsReference = ref(storage, props.image);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { image, isLoading } = useStorageImage(storage, props.image);
   const name = props.name.substring(
     props.name.lastIndexOf("=") + 1,
     props.name.lastIndexOf(".")
   );
-  getDownloadURL(gsReference).then((url) => {
-    const img = document.getElementById(props.name);
-    img?.setAttribute("src", url);
-  });
+
   useEffect(() => {
     if (
       selectedColorExterior === name ||
@@ -51,6 +50,7 @@ export function SetupSelectItem(props: ItemProps) {
               ? styles.noBorderRadius
               : styles.borderRadius
           }
+          src={image}
           id={props.name}
           alt="type"
         />

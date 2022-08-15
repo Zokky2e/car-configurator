@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { useEffect, useState } from "react";
+import { getStorage } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
-import { sharedAtoms } from "../../../../shared";
+import { sharedAtoms, useStorageImage } from "../../../../shared";
 import { configurationViewAtoms } from "../../../configuration-view";
 import { configuratorAtoms } from "../../../configurator";
 import { CarCardInfo } from "../../types";
@@ -12,7 +11,6 @@ import loadingImage from "../../assets/front-1-rs5.png";
 export function CarCard(props: CarCardInfo) {
   const navigate = useNavigate();
   const storage = getStorage();
-  const gsReference = ref(storage, props.picture);
   const setName = useSetRecoilState(configurationViewAtoms.name);
   const resetId = useResetRecoilState(configurationViewAtoms.id);
   const setWheels = useSetRecoilState(configurationViewAtoms.wheels);
@@ -45,7 +43,6 @@ export function CarCard(props: CarCardInfo) {
     else {
       setModelPrice(65900);
     }
-
     setExteriorPrice(0);
     setSelectedColorInterior(props.colorInterior);
     setSelectedColorExterior(props.colorExterior);
@@ -65,18 +62,12 @@ export function CarCard(props: CarCardInfo) {
       });
     }, 500);
   }
-  const [image, setImage] = useState<string>(loadingImage);
-  useEffect(() => {
-    getDownloadURL(gsReference)
-      .then((url) => {
-        setImage(url);
-      })
-      .then(() => {})
-      .catch((error) => {
-        console.log(error);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gsReference]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { image, isLoading } = useStorageImage(
+    storage,
+    props.picture,
+    loadingImage
+  );
   return (
     <li css={styles.card}>
       <img css={styles.image} src={image} alt="car" />

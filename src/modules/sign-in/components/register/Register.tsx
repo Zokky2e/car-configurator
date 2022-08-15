@@ -106,7 +106,7 @@ export function Register() {
               type="checkbox"
               checked={checked}
               onChange={() => {
-                setChecked(!checked);
+                setChecked(!checked); //not-finished
               }}
             />
             Remember me

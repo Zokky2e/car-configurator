@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { useSetRecoilState } from "recoil";
-import { sharedAtoms } from "../../../../shared";
+import { sharedAtoms, useStorageImage } from "../../../../shared";
 import { configuratorAtoms } from "../../states";
 import { typeSelect } from "../../types";
 import { styles } from "./SetupItem.styles";
@@ -15,15 +15,12 @@ interface ItemProps {
 
 export function SetupItem(props: ItemProps) {
   const storage = getStorage();
-  const gsReference = ref(storage, props.image);
   const setIsSelectedType = useSetRecoilState(sharedAtoms.isSelectMenuOpen);
   const setSelectedType = useSetRecoilState(configuratorAtoms.selectedType);
   const setSelecteditem = useSetRecoilState(configuratorAtoms.selectedItem);
 
-  getDownloadURL(gsReference).then((url) => {
-    const img = document.getElementById(props.name);
-    img?.setAttribute("src", url);
-  });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { image, isLoading } = useStorageImage(storage, props.image);
   function handleSelect() {
     setSelecteditem({
       image: props.image,
@@ -47,6 +44,7 @@ export function SetupItem(props: ItemProps) {
               ? styles.noBorderRadius
               : styles.borderRadius
           }
+          src={image}
           id={props.name}
           alt="type"
         />

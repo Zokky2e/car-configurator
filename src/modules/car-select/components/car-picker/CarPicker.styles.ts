@@ -8,7 +8,7 @@ const carList = css`
   width: 100%;
   max-width: 1256px;
   height: 600px;
-  padding: 60px 0;
+  padding: 60px 0 58px;
 
   padding-right: 32px;
   gap: 32px;
