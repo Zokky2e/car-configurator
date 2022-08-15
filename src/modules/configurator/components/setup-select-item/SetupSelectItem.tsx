@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { getStorage } from "firebase/storage";
 import { typeSelect } from "../../types";
 import { styles } from "./SetupSelectItem.styles";
 import { ReactComponent as Success } from "../../../../shared/assets/Success.svg";
@@ -21,9 +20,8 @@ export function SetupSelectItem(props: ItemProps) {
   const selectedColorExterior = useRecoilValue(configuratorAtoms.selectedColor);
   const selectedWheels = useRecoilValue(configuratorAtoms.selectedWheels);
   const [isSelected, setIsSelected] = useState<boolean>(false);
-  const storage = getStorage();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { image, isLoading } = useStorageImage(storage, props.image);
+  const { image, isLoading } = useStorageImage(props.image);
   const name = props.name.substring(
     props.name.lastIndexOf("=") + 1,
     props.name.lastIndexOf(".")

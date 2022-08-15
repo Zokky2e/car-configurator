@@ -1,6 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
-import { getStorage } from "firebase/storage";
 import { useDate } from "../../hooks";
 import { CarInfo } from "../../types";
 import { styles } from "./Car.styles";
@@ -9,9 +7,8 @@ import { Loading, useStorageImage } from "../../../../shared";
 import { CarOptionMenu } from "../car-options-menu";
 export function Car(props: CarInfo) {
   const date = useDate(new Date(props.dateCreated));
-  const storage = getStorage();
   const picture: string = props.picture;
-  const { image, isLoading } = useStorageImage(storage, picture, loadingImage);
+  const { image, isLoading } = useStorageImage(picture, loadingImage);
   return (
     <li css={styles.item}>
       <div css={styles.info}>

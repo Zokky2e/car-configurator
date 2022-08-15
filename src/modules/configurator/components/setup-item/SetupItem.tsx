@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { getStorage } from "firebase/storage";
 import { useSetRecoilState } from "recoil";
 import { sharedAtoms, useStorageImage } from "../../../../shared";
 import { configuratorAtoms } from "../../states";
@@ -14,13 +13,12 @@ interface ItemProps {
 }
 
 export function SetupItem(props: ItemProps) {
-  const storage = getStorage();
   const setIsSelectedType = useSetRecoilState(sharedAtoms.isSelectMenuOpen);
   const setSelectedType = useSetRecoilState(configuratorAtoms.selectedType);
   const setSelecteditem = useSetRecoilState(configuratorAtoms.selectedItem);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { image, isLoading } = useStorageImage(storage, props.image);
+  const { image, isLoading } = useStorageImage(props.image);
   function handleSelect() {
     setSelecteditem({
       image: props.image,

@@ -1,10 +1,7 @@
-import { FirebaseStorage, getDownloadURL, ref } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
-export function useStorageImage(
-  storage: FirebaseStorage,
-  collection: string,
-  loadingImage?: string
-) {
+export function useStorageImage(collection: string, loadingImage?: string) {
+  const storage = getStorage();
   const [image, setImage] = useState<string>(loadingImage ? loadingImage : "");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const gsReference = ref(storage, collection);

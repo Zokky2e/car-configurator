@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { getStorage } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { sharedAtoms, useStorageImage } from "../../../../shared";
@@ -10,7 +9,6 @@ import { styles } from "./CarCard.styles";
 import loadingImage from "../../assets/front-1-rs5.png";
 export function CarCard(props: CarCardInfo) {
   const navigate = useNavigate();
-  const storage = getStorage();
   const setName = useSetRecoilState(configurationViewAtoms.name);
   const resetId = useResetRecoilState(configurationViewAtoms.id);
   const setWheels = useSetRecoilState(configurationViewAtoms.wheels);
@@ -63,11 +61,7 @@ export function CarCard(props: CarCardInfo) {
     }, 500);
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { image, isLoading } = useStorageImage(
-    storage,
-    props.picture,
-    loadingImage
-  );
+  const { image, isLoading } = useStorageImage(props.picture, loadingImage);
   return (
     <li css={styles.card}>
       <img css={styles.image} src={image} alt="car" />

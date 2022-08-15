@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { getStorage } from "firebase/storage";
 import { useEffect } from "react";
 import { useStorageImage } from "../../hooks";
 import { Loading } from "../loading-component";
@@ -12,8 +11,7 @@ interface ImageProps {
 }
 
 export function Image(props: ImageProps) {
-  const storage = getStorage();
-  const { image, isLoading } = useStorageImage(storage, props.image);
+  const { image, isLoading } = useStorageImage(props.image);
 
   useEffect(() => {}, [props.image]);
   return (
